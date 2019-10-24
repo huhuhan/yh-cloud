@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.5.RELEASE</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <!--基本信息-->
+    <groupId>com.yh</groupId>
+    <artifactId>yh-cloud</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>yh-cloud</name>
+    <description>Demo project for Spring Boot</description>
+    <packaging>pom</packaging>
+
+    <!--子模块-->
+    <modules>
+        <module>yh-eureka</module>
+        <module>yh-common</module>
+        <module>yh-auth</module>
+        <module>yh-auth-client-demo</module>
+    </modules>
+
+    <!--版本号-->
+    <properties>
+        <yh-cloud.version>0.0.1-SNAPSHOT</yh-cloud.version>
+        <java.version>1.8</java.version>
+    </properties>
+
+
+    <!--所有项目共有依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <!--运行阶段：容器已有jar包，则无需此依赖-->
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+
+
+    <!--依赖声明管理-->
+    <dependencyManagement>
+        <dependencies>
+            <!--spring cloud 组件-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR1</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!--本项目自定义模块声明-->
+            <dependency>
+                <groupId>com.yh</groupId>
+                <artifactId>common-eureka-client</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

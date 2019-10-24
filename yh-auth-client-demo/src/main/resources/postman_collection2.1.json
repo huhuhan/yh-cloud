@@ -1,0 +1,346 @@
+{
+	"info": {
+		"_postman_id": "72fe7cb0-ef74-40a4-bdee-49cf8fec416a",
+		"name": "spring cloud oauth2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "获取token接口-客户端认证",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "client_demo",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret_client_demo",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9001/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token接口-账户密码认证",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "client_demo",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret_client_demo",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9001/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "无权访问接口",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ0ZXN0Iiwic2NvcGUiOlsiYWxsIl0sInJvbGVzIjpbImFkbWluIiwicGVyc29uIl0sImV4cCI6MTU3MTIxOTA1NCwidXNlciI6eyJnZW5kZXIiOiLnlLciLCJjcmVhdGVUaW1lIjoiV2VkIE9jdCAxNiAxNjo0NDoxNCBDU1QgMjAxOSIsInVzZXJOYW1lIjoiYWRtaW4ifSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6IjE2YjEyZmE4LTA1MDQtNDNiZS1iZmZlLTNhOTM5ZmQ2MThiNSIsImNsaWVudF9pZCI6ImNsaWVudF9kZW1vIn0.E5B_sYGqYothVD5_ABkOObZKn1C4kpUnVkQaVcaIt4ovxzYkGyE1hnmPcNhROhu3dGd1pCWdCx7P51n6LE7h0oOeTV8ZkQrhnxH4dbL4NtWxDXnfzUAQPrSyvis08QL8r9ggph5oCBvlZ6O7B12hMGoj1B8dn10unp04z1Z-9qV9eH--qUqyPNhrskOBE6WEr0oZqqmE7LLcD2_l2NzbTgtAAW3QJ2oVKpZxIGAt7KkDbpnY13Rkq_eBMVLXUsYZ6uKKRXR3HaoOTEmxTcOuy7WFv4_94S1JB8NPtG7kbmFAEvav3_tl3gq15t47iNQiMtRVRb11_w-wXjUt7doCHg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:9999/user",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9999",
+					"path": [
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token接口-code认证",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_secret",
+							"value": "secret_client_demo",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "akYXzB",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://www.baidu.com",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "client_demo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9001/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token接口-刷新认证",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_secret",
+							"value": "secret_client_demo",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJ0ZXN0Iiwic2NvcGUiOlsiYWxsIl0sInJvbGVzIjpbImFkbWluIiwicGVyc29uIl0sImF0aSI6ImI3MDMwZjI2LTM0ODItNDY4Zi04MzliLTMyZGFmZTVlOWIyNSIsImV4cCI6MTU3MTkxMTc5NiwidXNlciI6eyJnZW5kZXIiOiLnlLciLCJjcmVhdGVUaW1lIjoiVGh1IE9jdCAyNCAxNzowOTo1NiBDU1QgMjAxOSIsInVzZXJOYW1lIjoiYWRtaW4ifSwiYXV0aG9yaXRpZXMiOlsiUk9MRV9VU0VSIl0sImp0aSI6ImIzMDlmMDIzLTc2ZDQtNGY4Ni05NzRiLTZhODkzMmVhN2I4ZSIsImNsaWVudF9pZCI6ImNsaWVudF9kZW1vIn0.jKqCwEHtbbToNJ4JZIIvanvt3MIbmd9ehFq8Kkfb-ZRLjhNVltAjD8-huddtxAG2-UTnBuETAVPd8Y25J5n8_vpyS1Wq5Mu8jkjU2MMdGDOXeRdYjMe6EQUIqEGuH2S_EwGIzlC34aaukXrWBLntgGqYWR4CmTM8hnBv5oyV9WgRNMAAz9TJexwiRNSRlWVk6bjGgiehYkL4YJXPuryBCu_v1kj1HkpD0mK18tkHfUSPtRj08U4jIH05K8oz40IR5ezfAiLh_0sfHC5hmvaKEYNZLM8YsO1ugV19Icj4Az1crvBW9ouusp0fWbPNyMyvVEho2w_smy_iqpYagw8THw",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "client_demo",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:9001/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "获取token接口-code验证-获取code",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:9001/oauth/authorize?client_id=client_demo&redirect_uri=http://www.baidu.com&response_type=code&scope=all\n",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "9001",
+					"path": [
+						"oauth",
+						"authorize"
+					],
+					"query": [
+						{
+							"key": "client_id",
+							"value": "client_demo"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://www.baidu.com"
+						},
+						{
+							"key": "response_type",
+							"value": "code"
+						},
+						{
+							"key": "scope",
+							"value": "all\n"
+						},
+						{
+							"key": "说明",
+							"value": "浏览器访问，需要登录后再授权",
+							"disabled": true
+						}
+					]
+				},
+				"description": "code方式获取token的前提步骤，获取code，需要先登录，code使用过就失效"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "c9320ab7-f6e7-49a9-bdaa-15c88f077086",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "d1ad065c-69a4-4251-a1f8-75c28b1f4f43",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

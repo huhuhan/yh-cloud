@@ -1,0 +1,18 @@
+eureka:
+  instance:
+    hostname: localhost
+    port: ${server.port}
+    # 以IP地址注册到服务中心，相互注册使用IP地址
+    preferIpAddress: true
+  client:
+    # 注册Eureka自身服务
+    register-with-eureka: false
+    # 能获取注册信息
+    fetch-registry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    # 中断保护机制，Eureka 会统计15分钟之内心跳失败的比例低于85%将会触发保护机制
+    enable-self-preservation: false
+    # 获取不到实例时等待时间，毫秒
+    waitTimeInMsWhenSyncEmpty: 0

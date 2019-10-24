@@ -1,0 +1,24 @@
+server:
+  port: 9999
+
+spring:
+  profiles:
+    active: dev
+  application:
+    #bootstrap先加载，读不到pom，在application中有效
+    name: @pom.artifactId@
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+
+#作为需要oauth授权认证的资源客户端
+security:
+  oauth2:
+    client:
+      client-id: client_demo
+      client-secret: secret_client_demo
+    resource:
+      token-info-uri: http://localhost:9001/oauth/check_token
+

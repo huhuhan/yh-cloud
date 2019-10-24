@@ -1,0 +1,9 @@
+server:
+  port: 8761
+
+spring:
+  profiles:
+    active: dev
+  application:
+    #bootstrap先加载，读不到pom，在application中有效
+    name: @pom.artifactId@
