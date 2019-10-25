@@ -67,10 +67,10 @@ public class JwtTokenConfig {
         accessTokenConverter.setKeyPair(KEY_PAIR);
         return accessTokenConverter;*/
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(
-                new ClassPathResource("fw-cloud.jks"), "fw-admin".toCharArray()
+                new ClassPathResource("yh-cloud.jks"), "yh-admin".toCharArray()
         );
         JwtAccessTokenConverter converter = new JwtAccessTokenConverter();
-        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("fw-jwt", "fw-user".toCharArray()));
+        converter.setKeyPair(keyStoreKeyFactory.getKeyPair("yh-jwt", "yh-user".toCharArray()));
         return converter;
     }
 

@@ -1,0 +1,15 @@
+keytool.exe -genkeypair -alias yh-jwt -keyalg RSA -keypass yh-user -keystore yh-cloud.jks -storepass yh-admin
+您的名字与姓氏是什么?
+  [Unknown]:  yh
+您的组织单位名称是什么?
+  [Unknown]:  yh
+您的组织名称是什么?
+  [Unknown]:  yh
+您所在的城市或区域名称是什么?
+  [Unknown]:  yh
+您所在的省/市/自治区名称是什么?
+  [Unknown]:  yh
+该单位的双字母国家/地区代码是什么?
+  [Unknown]:  yh
+CN=yh, OU=yh, O=yh, L=yh, ST=yh, C=yh是否正确?
+  [否]:  y
