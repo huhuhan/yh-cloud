@@ -23,11 +23,11 @@ swagger:
   authorization:
     key-name: Authorization
   docket:
-    fw-activiti-mine:
+    yh-activiti-mine:
       title: 自定义工作流接口
       base-package: com.yh.cloud.activiti
       version: 1.0
-    fw-activiti-org:
+    yh-activiti-org:
       title: Activiti源码接口
       base-package: org.activiti.rest
       version: 5.22
