@@ -1,0 +1,33 @@
+#服务名默认取artifactId
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: dev
+
+# swagger2配置
+swagger:
+  enabled: true
+#  title: 工作流服务
+  description: 工作流服务 RestFull Api
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  terms-of-service-url: https://github.com/huhuhan/yh-cloud
+  contact:
+    name: yanghan
+    url: https://github.com/huhuhan/yh-cloud
+    email: yanghanchn@163.com
+  #  base-package: com.fwcloud.activiti, org.activiti.rest
+    base-path: /**
+  exclude-path: /error
+  authorization:
+    key-name: Authorization
+  docket:
+    fw-activiti-mine:
+      title: 自定义工作流接口
+      base-package: com.yh.cloud.activiti
+      version: 1.0
+    fw-activiti-org:
+      title: Activiti源码接口
+      base-package: org.activiti.rest
+      version: 5.22

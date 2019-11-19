@@ -1,0 +1,34 @@
+server:
+  port: 9205
+
+spring:
+  activiti:
+    #表示关闭验证自动部署，不关闭每次启动都会去部署resources/processes文件夹下面的所有资源文件
+    check-process-definitions: false
+    database-schema-update: true
+    history-level: full
+    db-history-used: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/activiti5?useUnicode=true&autoReconnect=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: yanghan
+
+
+
+
+#log日志配置
+logging:
+  level:
+    com:
+      fwcloud:
+        activiti5: debug
+    org:
+      activiti: debug
+  #文件输入绝对路径
+  file: D:/YH/log/fwcloud/@pom.artifactId@.log
+
+#服务器文件缓存路径
+file:
+  upload:
+    path: D:/YH/upload/@pom.artifactId@
