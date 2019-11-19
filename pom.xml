@@ -28,6 +28,17 @@
     <properties>
         <yh-cloud.version>0.0.1-SNAPSHOT</yh-cloud.version>
         <java.version>1.8</java.version>
+        <mysql.version>8.0.15</mysql.version>
+        <druid-starter.version>1.1.16</druid-starter.version>
+        <swagger-spring-boot-starter>1.9.0.RELEASE</swagger-spring-boot-starter>
+
+        <apache.common-lang.version>3.9</apache.common-lang.version>
+        <apache.common-collection.version>4.3</apache.common-collection.version>
+        <apache.commons-pool2.version>2.6.2</apache.commons-pool2.version>
+        <commons-io.version>2.5</commons-io.version>
+        <google.zxing.version>3.3.3</google.zxing.version>
+        <pagehelper.version>5.1.8</pagehelper.version>
+
     </properties>
 
 
@@ -61,16 +72,89 @@
                 <artifactId>yh-common-eureka-client</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
+            <dependency>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-base</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <!--msql-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-starter.version}</version>
+            </dependency>
+
+            <!--swagger-->
+            <dependency>
+                <groupId>com.spring4all</groupId>
+                <artifactId>swagger-spring-boot-starter</artifactId>
+                <version>${swagger-spring-boot-starter}</version>
+            </dependency>
+
+            <!--Aapache 扩展工具包-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${apache.common-lang.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>${apache.common-collection.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>${commons-io.version}</version>
+            </dependency>
+
+            <!--google.zxing：二维码-->
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>core</artifactId>
+                <version>${google.zxing.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.zxing</groupId>
+                <artifactId>javase</artifactId>
+                <version>${google.zxing.version}</version>
+            </dependency>
+
+            <!--分页工具-->
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
     <build>
         <plugins>
-            <plugin>
+            <!--<plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>-->
+            <!--用maven编译器替代spring编译器，否则每个项目必须要有springboot启动类-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>
+
 
 </project>
