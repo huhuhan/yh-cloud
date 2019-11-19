@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>yh-cloud</artifactId>
-        <groupId>com.yh</groupId>
+        <groupId>com.yh.cloud</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
@@ -21,8 +21,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.yh</groupId>
-            <artifactId>common-eureka-client</artifactId>
+            <groupId>com.yh.cloud</groupId>
+            <artifactId>yh-common-eureka-client</artifactId>
         </dependency>
     </dependencies>
 </project>

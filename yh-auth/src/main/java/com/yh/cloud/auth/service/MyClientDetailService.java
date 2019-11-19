@@ -1,4 +1,4 @@
-package com.yh.auth.service;
+package com.yh.cloud.auth.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

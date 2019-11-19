@@ -1,4 +1,4 @@
-package com.yh.auth.wrapper;
+package com.yh.cloud.auth.wrapper;
 
 import lombok.Data;
 

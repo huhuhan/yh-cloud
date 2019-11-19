@@ -1,7 +1,7 @@
-package com.yh.auth.config;
+package com.yh.cloud.auth.config;
 
-import com.yh.auth.handler.MyAuthenticationFailureHandler;
-import com.yh.auth.handler.MyAuthenticationSuccessHandler;
+import com.yh.cloud.auth.handler.MyAuthenticationFailureHandler;
+import com.yh.cloud.auth.handler.MyAuthenticationSuccessHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

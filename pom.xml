@@ -9,7 +9,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <!--基本信息-->
-    <groupId>com.yh</groupId>
+    <groupId>com.yh.cloud</groupId>
     <artifactId>yh-cloud</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>yh-cloud</name>
@@ -57,8 +57,8 @@
 
             <!--本项目自定义模块声明-->
             <dependency>
-                <groupId>com.yh</groupId>
-                <artifactId>common-eureka-client</artifactId>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-eureka-client</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
             </dependency>
         </dependencies>

@@ -1,4 +1,4 @@
-package com.yh.app.demo.rest;
+package com.yh.cloud.demo.rest;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.GetMapping;

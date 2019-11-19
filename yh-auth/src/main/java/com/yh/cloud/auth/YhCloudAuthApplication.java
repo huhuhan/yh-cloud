@@ -1,4 +1,4 @@
-package com.yh.auth;
+package com.yh.cloud.auth;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

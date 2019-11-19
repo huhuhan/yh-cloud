@@ -1,4 +1,4 @@
-package com.yh.auth.handler;
+package com.yh.cloud.auth.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
