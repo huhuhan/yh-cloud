@@ -39,6 +39,7 @@
         <commons-io.version>2.5</commons-io.version>
         <google.zxing.version>3.3.3</google.zxing.version>
         <pagehelper.version>5.1.8</pagehelper.version>
+        <mybatis.plus.version>3.1.0</mybatis.plus.version>
 
     </properties>
 
@@ -139,6 +140,18 @@
                 <groupId>com.github.pagehelper</groupId>
                 <artifactId>pagehelper</artifactId>
                 <version>${pagehelper.version}</version>
+            </dependency>
+
+            <!-- mybatis plus -->
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis.plus.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-generator</artifactId>
+                <version>${mybatis.plus.version}</version>
             </dependency>
 
         </dependencies>

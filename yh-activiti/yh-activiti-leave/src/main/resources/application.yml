@@ -1,0 +1,33 @@
+#服务名默认取artifactId
+spring:
+  application:
+    name: @pom.artifactId@
+  profiles:
+    active: dev
+
+# swagger2配置
+swagger:
+  enabled: true
+  title: 自然资源管理平台
+  description: 自然资源管理平台 RestFull Api
+  version: 1.0
+  license: Apache License, Version 2.0
+  license-url: https://www.apache.org/licenses/LICENSE-2.0.html
+  terms-of-service-url: https://github.com/huhuhan/yh-cloud
+  contact:
+    name: yanghan
+    url: https://github.com/huhuhan/yh-cloud
+    email: yanghanchn@163.com
+  base-package: com.yh.cloud.activiti.leave
+  base-path: /**
+  exclude-path: /error
+  authorization:
+    key-name: Authorization
+
+
+#log日志配置
+logging:
+  level:
+    com.yh.cloud.activiti.leave: debug
+  #文件输入绝对路径
+  file: D:/YH/log/yhcloud/@pom.artifactId@.log

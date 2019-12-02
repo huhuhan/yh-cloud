@@ -10,10 +10,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>yh-activiti</artifactId>
+    <packaging>pom</packaging>
 
     <modules>
         <module>yh-activiti5</module>
         <module>yh-activiti-api</module>
+        <module>yh-activiti-leave</module>
     </modules>
 
 
