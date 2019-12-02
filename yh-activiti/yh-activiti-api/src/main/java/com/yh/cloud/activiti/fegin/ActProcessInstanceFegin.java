@@ -18,7 +18,7 @@ import java.util.Map;
  * @author yanghan
  * @date 2019/11/31
  */
-@FeignClient(name = "FWCLOUD-ACTIVITI5", contextId = "act")
+@FeignClient(name = "YH-ACTIVITI5", contextId = "act")
 public interface ActProcessInstanceFegin {
 
     /**

@@ -17,7 +17,6 @@ swagger:
     name: yanghan
     url: https://github.com/huhuhan/yh-cloud
     email: yanghanchn@163.com
-  #  base-package: com.fwcloud.activiti, org.activiti.rest
     base-path: /**
   exclude-path: /error
   authorization:

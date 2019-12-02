@@ -20,10 +20,10 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan({"org.activiti.rest","com.yh.cloud.activiti"})
 @SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 @EnableFeignClients
-public class YhActiviti5Application {
+public class YhCloudActiviti5Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(YhActiviti5Application.class, args);
+        SpringApplication.run(YhCloudActiviti5Application.class, args);
     }
 
 }

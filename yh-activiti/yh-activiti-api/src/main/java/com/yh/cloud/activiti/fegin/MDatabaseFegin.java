@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @date 2019/10/31
  */
 
-@FeignClient(name = "FWCLOUD-ACTIVITI5", contextId = "database")
+@FeignClient(name = "YH-ACTIVITI5", contextId = "database")
 public interface MDatabaseFegin {
     @GetMapping("/management/database/list")
     Object getDatabaseList(@RequestParam(required = false) String tableName,

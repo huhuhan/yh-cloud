@@ -20,13 +20,11 @@ spring:
 #log日志配置
 logging:
   level:
-    com:
-      fwcloud:
-        activiti5: debug
+    com.yh.cloud.activiti5: debug
     org:
       activiti: debug
   #文件输入绝对路径
-  file: D:/YH/log/fwcloud/@pom.artifactId@.log
+  file: D:/YH/log/yhcloud/@pom.artifactId@.log
 
 #服务器文件缓存路径
 file:
