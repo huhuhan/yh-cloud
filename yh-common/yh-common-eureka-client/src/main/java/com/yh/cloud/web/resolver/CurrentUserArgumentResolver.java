@@ -37,7 +37,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
      * 入参处理
      *
      * @param methodParameter       入参集合
-     * @param modelAndViewContainer model 和 view
+     * @param modelAndViewContainer com.yh.cloud.activti.leave.model 和 view
      * @param nativeWebRequest      web相关
      * @param webDataBinderFactory  入参解析
      * @return 包装对象
