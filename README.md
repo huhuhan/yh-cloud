@@ -12,7 +12,7 @@ Oauth2的4种认证方式和资源服务认证
 
 ### Activiti 工作流
 工作流5.22版本，集成独立服务、api服务  
-参考[咖啡兔](https://github.com/henryyan/kft-activiti-demo)  
+参考[咖啡兔的工作流Demo](https://github.com/henryyan/kft-activiti-demo)  
 涉及模块：
 - yh-activiti-leave  
 - yh-activiti5
@@ -20,4 +20,4 @@ Oauth2的4种认证方式和资源服务认证
 - yh-common-base
 - yh-common-eureka-client
 - yh-eureka  
-前端项目：[yh-cloud](https://github.com/huhuhan/yh-cloud-ui)
+前端项目：[yh-cloud-ui](https://github.com/huhuhan/yh-cloud-ui)
