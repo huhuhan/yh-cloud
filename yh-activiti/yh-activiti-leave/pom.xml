@@ -11,6 +11,7 @@
 
     <groupId>com.yh.cloud</groupId>
     <artifactId>yh-activiti-leave</artifactId>
+    <description>工作流实例Demo 请假业务</description>
 
 
     <dependencies>
