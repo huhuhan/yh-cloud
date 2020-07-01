@@ -25,7 +25,6 @@
         <module>yh-auth-client-demo2</module>
         <module>yh-auth-client-demo3</module>
         <module>yh-activiti</module>
-        <module>yh-auth-demo</module>
     </modules>
 
     <!--版本号-->
