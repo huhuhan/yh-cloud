@@ -1,0 +1,40 @@
+server:
+  port: 9998
+  servlet:
+#    context-path: /auth-demo2
+    #若没有context-path或cookie.name，同域名下的sso客户端，cookie会共享覆盖
+    session:
+      cookie:
+        name: auth-demo2
+
+spring:
+  profiles:
+    active: dev
+  application:
+    #bootstrap先加载，读不到pom，在application中有效
+    name: yh-auth-client-demo2 #@pom.artifactId@
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+
+#作为需要oauth授权认证的SSO客户端
+security:
+  oauth2:
+#    sso:
+#      login-path: http://localhost:9001/login
+    client:
+      client-id: client_demo2
+      client-secret: secret_client_demo2
+      #获取token
+      access-token-uri: http://localhost:9001/oauth/token
+      #授权码认证
+      user-authorization-uri: http://localhost:9001/oauth/authorize
+    resource:
+      #作为token认证，和下面参数二选一
+      token-info-uri: http://localhost:9001/oauth/check_token
+      #作为token-jwt的的解析
+#      jwt:
+#        key-uri:  http://localhost:9001/oauth/token_key
+#        key-value: xx

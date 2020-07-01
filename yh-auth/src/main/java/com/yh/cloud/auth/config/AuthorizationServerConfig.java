@@ -105,6 +105,19 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .refreshTokenValiditySeconds(3600)
                 //访问token时效，秒
                 .accessTokenValiditySeconds(3600)
+                .and().withClient("client_demo2")
+                .secret(passwordEncode.encode("secret_client_demo2"))
+                .scopes("all")
+                .authorizedGrantTypes("authorization_code")
+//                .authorities("client_x")
+                .redirectUris("http://localhost:9998/login")
+                .and().withClient("client_demo3")
+                .secret(passwordEncode.encode("secret_client_demo3"))
+                .scopes("all")
+                .authorizedGrantTypes("authorization_code")
+//                .authorities("client_x")
+                .redirectUris("http://localhost:9997/login")
+
         ;
         //实现类的方式加载，从数据库存储客户端信息
 //        clients.withClientDetails(MyClientDetailService)

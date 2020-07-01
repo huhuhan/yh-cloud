@@ -1,6 +1,9 @@
 server:
   port: 9001
-
+  servlet:
+    session:
+      cookie:
+        name: AuthorizationServer
 spring:
   profiles:
     active: dev
