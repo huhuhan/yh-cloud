@@ -14,9 +14,9 @@ Oauth2的4种认证方式和资源服务认证
 工作流5.22版本，集成独立服务、api服务  
 参考[咖啡兔的工作流Demo](https://github.com/henryyan/kft-activiti-demo)  
 涉及模块：
-- yh-activiti-leave  
-- yh-activiti5
-- yh-activiti-api
+- yh-activiti-leave ：   具体业务项目，例子：请假模块
+- yh-activiti5      ：   流程项目
+- yh-activiti-api   ：   流程对外接口实体封装包
 - yh-common-base
 - yh-common-eureka-client
 - yh-eureka  
