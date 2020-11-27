@@ -23,6 +23,7 @@
         <module>yh-auth</module>
         <module>yh-auth-client-demo</module>
         <module>yh-activiti</module>
+        <module>yh-gateway</module>
     </modules>
 
     <!--版本号-->
@@ -41,6 +42,7 @@
         <pagehelper.version>5.1.8</pagehelper.version>
         <mybatis.plus.version>3.1.0</mybatis.plus.version>
 
+        <yh-common.version>0.0.1-SNAPSHOT</yh-common.version>
     </properties>
 
 
@@ -77,14 +79,14 @@
             <dependency>
                 <groupId>com.yh.cloud</groupId>
                 <artifactId>yh-common-base</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${yh-common.version}</version>
             </dependency>
 
             <!--本项目自定义API声明-->
             <dependency>
                 <groupId>com.yh.cloud</groupId>
                 <artifactId>yh-activiti-api</artifactId>
-                <version>0.0.1-SNAPSHOT</version>
+                <version>${yh-common.version}</version>
             </dependency>
 
             <!--msql-->

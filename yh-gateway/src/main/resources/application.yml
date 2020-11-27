@@ -1,0 +1,42 @@
+server:
+  port: 9000
+
+spring:
+#    profiles:
+#    active: dev
+  application:
+    name: yh-gataway #@pom.artifactId@
+  cloud:
+    gateway:
+      # 开启 Gateway服务发现组件，默认以大写serviceId创建路由转发规则
+      discovery:
+        locator:
+          # 改为小写serviceId
+          lowerCaseServiceId: true
+          enabled: true
+      # 全局过滤器
+      default-filters:
+#        - StripPrefix=1
+        - name: Hystrix
+          args:
+            name: fallbackcmd
+            fallbackUri: forward:/fallback
+      # 自定义路由规则
+      routes:
+        - id: test_route
+          uri: http://huhuhan.github.io
+          predicates:
+            # /blog转发到http://huhuhan.github.io/blog
+            - Path=/blog
+
+# 熔断超时时间，单位：毫秒，默认2秒
+# 请求的服务超过设置的时间没有响应则熔断
+# 源码：HystrixCommandProperties.executionTimeoutInMilliseconds
+hystrix:
+  command:
+    # 自定义HystrixCommand
+    fallbackcmd:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 8000

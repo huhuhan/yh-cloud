@@ -21,3 +21,11 @@ Oauth2的4种认证方式和资源服务认证
 - yh-common-eureka-client
 - yh-eureka  
 前端项目：[yh-cloud-ui](https://github.com/huhuhan/yh-cloud-ui)
+
+
+
+### hosts
+```python
+127.0.0.1 yh-eureka
+127.0.0.1 yh-gateway
+```
