@@ -1,6 +1,6 @@
 package com.yh.cloud.web.exception;
 
-import com.yh.cloud.web.wrapper.ReturnCode;
+import com.yh.cloud.web.wrapper.IReturnCode;
 import lombok.Data;
 
 /**
@@ -14,7 +14,7 @@ public class BusinessException extends RuntimeException {
 
     private String code;
 
-    public BusinessException(ReturnCode returnCode){
+    public BusinessException(IReturnCode returnCode){
         super(returnCode.getMessage());
         this.code = returnCode.getCode();
     }

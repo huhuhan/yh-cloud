@@ -8,7 +8,7 @@ import lombok.Getter;
  */
 @Getter
 //@AllArgsConstructor
-public enum ReturnCode {
+public enum ReturnCode implements IReturnCode {
     SUCCESS("Success", "成功", "S200"),
     ERROR("Error", "失败", "S500"),
     ILLEGAL_PARAMETER("Invalid Parameter", "非法参数", "S400"),
