@@ -23,9 +23,13 @@ Oauth2的4种认证方式和资源服务认证
 前端项目：[yh-cloud-ui](https://github.com/huhuhan/yh-cloud-ui)
 
 
-
 ### hosts
 ```python
 127.0.0.1 yh-eureka
 127.0.0.1 yh-gateway
 ```
+
+### 备注
+
+- 微服务其他组件模块的应用测试，参考[demo-all/demo-sc](https://github.com/huhuhan/demo-all/tree/master/demo-sc)
+    
