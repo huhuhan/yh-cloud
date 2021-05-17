@@ -1,18 +1,21 @@
 eureka:
   instance:
-    hostname: localhost
-    port: ${server.port}
+    hostname: yh-eureka
     # 以IP地址注册到服务中心，相互注册使用IP地址
     preferIpAddress: true
   client:
-    # 注册Eureka自身服务
+    # 服务注册，默认开启，Eureka自身服务不需要注册
     register-with-eureka: false
-    # 能获取注册信息
+    # 服务获取，默认开启，Eureka自身服务不作为消费者
     fetch-registry: false
-    service-url:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
-    # 中断保护机制，Eureka 会统计15分钟之内心跳失败的比例低于85%将会触发保护机制
+    # 自我保护机制，默认开启，适合开发阶段关闭
     enable-self-preservation: false
-    # 获取不到实例时等待时间，毫秒
-    waitTimeInMsWhenSyncEmpty: 0
+    # 自我保护机制，自我保护系数，默认0.85
+    renewal-percent-threshold: 0.85
+    # 心跳机制，服务剔除周期，单位毫秒，默认60秒，[AbstractInstanceRegistry]类的定时器会打印日志
+    eviction-interval-timer-in-ms: 60000
+    # 获取不到实例时等待时间，单位毫秒，默认300秒
+    waitTimeInMsWhenSyncEmpty: 0 #3000000
+    # 关闭REST API 响应缓存
+    use-read-only-response-cache: false

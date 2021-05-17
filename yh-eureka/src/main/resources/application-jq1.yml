@@ -1,0 +1,11 @@
+# 集群节点
+server:
+  port: 8761
+
+
+
+eureka:
+  client:
+    service-url:
+      # 若搭建集群，${server.port}改为其他节点的端口，互相注册，多个服务配置通过逗号间隔；这里集成security的认证
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:8762/eureka/
