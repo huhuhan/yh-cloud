@@ -2,7 +2,7 @@ package com.yh.cloud.activiti.leave.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.yh.cloud.activiti.leave.model.domain.UserLeave;
-import com.yh.cloud.web.entity.CurrentUser;
+import com.yh.cloud.web.model.entity.CurrentUser;
 
 import java.util.List;
 import java.util.Map;

@@ -12,7 +12,7 @@ import com.yh.cloud.activiti.model.vo.CompleteTaskVo;
 import com.yh.cloud.activiti.model.vo.StartProcessInstanceVo;
 import com.yh.cloud.activiti.model.vo.TaskResultVo;
 import com.yh.cloud.base.util.BeanMapUtil;
-import com.yh.cloud.web.entity.CurrentUser;
+import com.yh.cloud.web.model.entity.CurrentUser;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -46,7 +46,7 @@ public class UserLeaveServiceImpl extends ServiceImpl<UserLeaveMapper, UserLeave
 
     @Override
     public void addUserLeave(CurrentUser currentUser, UserLeave userLeave) {
-        userLeave.setUserId(currentUser.getUserId());
+        userLeave.setUserId(Long.valueOf(currentUser.getUserId()));
 
 //        Map<String, Object> map = new HashMap<>();
 //        map.put("baseTask", userLeave);
@@ -138,8 +138,8 @@ public class UserLeaveServiceImpl extends ServiceImpl<UserLeaveMapper, UserLeave
             checkMsgList = Lists.newArrayList();
         }
         CheckMsgDto checkMsgDto = new CheckMsgDto();
-        checkMsgDto.setUserId(currentUser.getUserId().toString());
-        checkMsgDto.setUserName(currentUser.getUserName());
+        checkMsgDto.setUserId(currentUser.getUserId());
+        checkMsgDto.setUserName(currentUser.getUsername());
         checkMsgDto.setCheckMsg(checkMsg);
         checkMsgDto.setCheckTime(LocalDateTime.now());
         checkMsgList.add(checkMsgDto);

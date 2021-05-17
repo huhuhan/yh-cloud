@@ -41,10 +41,20 @@ public class ReturnWrapMapper {
      * @param <E> the type parameter
      * @return the wrapper
      */
-    public static <E> ReturnWrapper<E> error(IReturnCode error) {
-        return new ReturnWrapper<>(error);
+    public static <E> ReturnWrapper<E> error(IReturnCode returnCode) {
+        return new ReturnWrapper<>(returnCode);
     }
 
+
+    /**
+     * 扩展，异常信息
+     * @author yanghan
+     * @return com.yh.cloud.web.wrapper.ReturnWrapper
+     * @date 2021/1/29
+     */
+    public static ReturnWrapper error(ReturnCode returnCode, String error) {
+        return new ReturnWrapper<>(returnCode, error);
+    }
 
     /**
      * Error wrapper.
@@ -53,8 +63,6 @@ public class ReturnWrapMapper {
      * @return the wrapper
      */
     public static <E> ReturnWrapper<E> errorWithException(Exception e) {
-
-
         return new ReturnWrapper<>(e.getMessage(), ReturnCode.ERROR.getCode());
     }
 
@@ -78,4 +86,5 @@ public class ReturnWrapMapper {
     public static <E> ReturnWrapper<E> ok(E o) {
         return new ReturnWrapper<>(ReturnCode.SUCCESS, o);
     }
+
 }

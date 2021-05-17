@@ -1,11 +1,16 @@
 package com.yh.cloud.web.resolver;
 
+import com.yh.cloud.base.constant.BaseConstant;
 import com.yh.cloud.web.annotation.CUser;
-import com.yh.cloud.web.entity.CurrentUser;
+import com.yh.cloud.web.model.ICurrentUser;
+import com.yh.cloud.web.model.entity.CurrentUser;
+import com.yh.cloud.web.service.ICurrentUserService;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
 import org.springframework.web.bind.support.WebDataBinderFactory;
 import org.springframework.web.context.request.NativeWebRequest;
+import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.method.support.ModelAndViewContainer;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
@@ -19,7 +24,14 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
  * @date 2019/6/28
  */
 @Slf4j
+@NoArgsConstructor
 public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolver {
+    private ICurrentUserService iCurrentUserService;
+
+    public CurrentUserArgumentResolver(ICurrentUserService iCurrentUserService) {
+        this.iCurrentUserService = iCurrentUserService;
+    }
+
 
     /**
      * 1. 入参筛选
@@ -48,17 +60,28 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
                                   NativeWebRequest nativeWebRequest,
                                   WebDataBinderFactory webDataBinderFactory) throws MissingServletRequestPartException {
         //jwt拦截器封装了currentUser
-//        CurrentUser user = (CurrentUser) nativeWebRequest.getAttribute("currentUser", RequestAttributes.SCOPE_REQUEST);
-//        if (user != null) {
-//            return user;
-//        }
-//        throw new MissingServletRequestPartException("currentUser");
+        ICurrentUser user = (CurrentUser) nativeWebRequest.getAttribute(BaseConstant.HEADER_CURRENT_USER, RequestAttributes.SCOPE_REQUEST);
+        if (user != null) {
+            return user;
+        }
+
+        if (null != iCurrentUserService) {
+            String userId = nativeWebRequest.getHeader(BaseConstant.HEADER_CURRENT_USER_ID);
+            user = iCurrentUserService.getCurrentUserByUserId(userId);
+        } else {
+            throw new MissingServletRequestPartException("ICurrentUserService is not load !");
+        }
 
         //todo : Demo 用户
-        CurrentUser user = new CurrentUser();
-        user.setUserId(88888888L);
-        user.setUserName("测试Demo管理员");
-        user.setLoginName("adminDemo");
+//        CurrentUser user = new CurrentUser();
+//        user.setUserId(88888888L);
+//        user.setUserName("测试Demo管理员");
+//        user.setLoginName("adminDemo");
+
+        if (null == user) {
+            log.info("missing CurrentUser info");
+        }
+
         return user;
     }
 
