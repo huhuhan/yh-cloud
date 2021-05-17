@@ -15,6 +15,7 @@
         <module>yh-common-web</module>
         <module>yh-common-base</module>
         <module>yh-common-db</module>
+        <module>yh-common-ribbon</module>
     </modules>
 
 
