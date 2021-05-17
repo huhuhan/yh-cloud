@@ -6,7 +6,7 @@ spring:
     active: dev
   application:
     #bootstrap先加载，读不到pom，在application中有效
-    name: @pom.artifactId@
+    name: yh-auth-demo
 
 logging:
   level:

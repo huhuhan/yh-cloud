@@ -1,7 +1,7 @@
 #服务名默认取artifactId
 spring:
   application:
-    name: @pom.artifactId@
+    name: yh-activiti5
   profiles:
     active: dev
 
