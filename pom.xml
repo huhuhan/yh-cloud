@@ -107,7 +107,7 @@
             <!--自定义模块声明-->
             <dependency>
                 <groupId>com.yh.cloud</groupId>
-                <artifactId>yh-common-eureka-client</artifactId>
+                <artifactId>yh-common-web</artifactId>
                 <version>1.0-SNAPSHOT</version>
             </dependency>
             <dependency>

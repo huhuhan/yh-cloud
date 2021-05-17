@@ -20,7 +20,12 @@
         <!--本项目应用-->
         <dependency>
             <groupId>com.yh.cloud</groupId>
-            <artifactId>yh-common-eureka-client</artifactId>
+            <artifactId>yh-common-web</artifactId>
+        </dependency>
+        <!--微服务 客户端-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
         <dependency>
             <groupId>com.yh.cloud</groupId>

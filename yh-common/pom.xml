@@ -12,7 +12,7 @@
     <artifactId>yh-common</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>yh-common-eureka-client</module>
+        <module>yh-common-web</module>
         <module>yh-common-base</module>
         <module>yh-common-db</module>
     </modules>

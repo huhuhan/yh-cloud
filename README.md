@@ -7,7 +7,7 @@ Oauth2的4种认证方式和资源服务认证
 - yh-auth
 - yh-auth-client-demo
 - yh-eureka
-- yh-common-eureka-client
+- yh-common-web
 
 
 ### Activiti 工作流
@@ -18,7 +18,7 @@ Oauth2的4种认证方式和资源服务认证
 - yh-activiti5      ：   流程项目
 - yh-activiti-api   ：   流程对外接口实体封装包
 - yh-common-base
-- yh-common-eureka-client
+- yh-common-web
 - yh-eureka  
 前端项目：[yh-cloud-ui](https://github.com/huhuhan/yh-cloud-ui)
 
