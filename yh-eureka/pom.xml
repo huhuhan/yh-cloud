@@ -45,6 +45,6 @@
             </plugin>
         </plugins>
         <!--打包包名-->
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
     </build>
 </project>

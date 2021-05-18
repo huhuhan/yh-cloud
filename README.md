@@ -4,7 +4,7 @@
 ### Spring Cloud Oauth2 Demo
 Oauth2的4种认证方式和资源服务认证  
 涉及模块：
-- yh-auth
+- yh-auth-server
 - yh-auth-client-demo
 - yh-eureka
 - yh-common-web

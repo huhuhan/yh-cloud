@@ -3,36 +3,36 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>yh-cloud</artifactId>
+        <artifactId>yh-auth</artifactId>
         <groupId>com.yh.cloud</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>yh-actuator</artifactId>
-
+    <artifactId>yh-auth-client-demo</artifactId>
+    <description>业务项目Demo</description>
+    <packaging>jar</packaging>
 
     <dependencies>
+        <!--starer版包含 security 、oauth、jwt依赖-->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-oauth2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.yh.cloud</groupId>
+            <artifactId>yh-common-base</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-security</artifactId>
+            <groupId>com.yh.cloud</groupId>
+            <artifactId>yh-common-web</artifactId>
         </dependency>
+
         <!--微服务 客户端-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>de.codecentric</groupId>
-            <artifactId>spring-boot-admin-starter-server</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
     </dependencies>
 
@@ -41,16 +41,21 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!--可执行jar，要求有输入函数main-->
+                    <executable>true</executable>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
+                            <!--将其他依赖包也打包进去-->
                             <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
         </plugins>
+        <!--打包包名-->
         <finalName>${project.artifactId}</finalName>
     </build>
-
 </project>

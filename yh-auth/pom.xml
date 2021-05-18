@@ -8,49 +8,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>yh-auth</artifactId>
-    <description>认证授权服务</description>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <!--starer版包含 security 、oauth、jwt依赖-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
+    <modules>
+        <module>yh-auth-server</module>
+        <module>yh-auth-client-demo</module>
+    </modules>
 
-        <dependency>
-            <groupId>com.yh.cloud</groupId>
-            <artifactId>yh-common-web</artifactId>
-        </dependency>
-        <!--微服务 客户端-->
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <!--可执行jar，要求有输入函数main-->
-                    <executable>true</executable>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <!--将其他依赖包也打包进去-->
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-        <!--打包包名-->
-        <finalName>${artifactId}</finalName>
-    </build>
 </project>

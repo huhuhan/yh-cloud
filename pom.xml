@@ -20,7 +20,6 @@
         <module>yh-eureka</module>
         <module>yh-common</module>
         <module>yh-auth</module>
-        <module>yh-auth-client-demo</module>
         <module>yh-activiti</module>
         <module>yh-gateway</module>
         <module>yh-actuator</module>
