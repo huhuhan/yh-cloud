@@ -1,0 +1,27 @@
+server:
+  port: 8220
+spring:
+  application:
+    name: yh-actuator
+  security:
+    user:
+      name: yh
+      password: yh
+# 服务监控消息发送指定邮箱
+#  mail:
+#    host: smtp.qiye.aliyun.com
+#    username: xxx@xx.com
+#    password: xxx
+#    properties:
+#      mail:
+#        smtp:
+#          auth: true
+#          startls:
+#            enable: true
+#            required: true
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          to: xxx@xx.com
+#          from: xxx@xx.com

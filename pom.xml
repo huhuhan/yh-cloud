@@ -23,6 +23,7 @@
         <module>yh-auth-client-demo</module>
         <module>yh-activiti</module>
         <module>yh-gateway</module>
+        <module>yh-actuator</module>
     </modules>
 
     <!--版本号-->

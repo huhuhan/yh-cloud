@@ -1,0 +1,8 @@
+eureka:
+  client:
+    register-with-eureka: true
+    serviceUrl:
+      defaultZone: http://yh:yh@sc-eureka:8761/eureka/
+  instance:
+    instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
+    status-page-url-path: /
