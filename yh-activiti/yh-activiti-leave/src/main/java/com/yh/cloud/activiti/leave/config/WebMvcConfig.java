@@ -1,6 +1,6 @@
 package com.yh.cloud.activiti.leave.config;
 
-import com.yh.cloud.web.resolver.CurrentUserArgumentResolver;
+import com.yh.common.web.resolver.CurrentUserArgumentResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.format.FormatterRegistry;

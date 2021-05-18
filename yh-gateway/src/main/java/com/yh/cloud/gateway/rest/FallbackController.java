@@ -1,9 +1,9 @@
 package com.yh.cloud.gateway.rest;
 
 import com.yh.cloud.gateway.model.GateWayReturnCode;
-import com.yh.cloud.web.wrapper.IReturnCode;
-import com.yh.cloud.web.wrapper.ReturnWrapMapper;
-import com.yh.cloud.web.wrapper.ReturnWrapper;
+import com.yh.common.web.wrapper.IReturnCode;
+import com.yh.common.web.wrapper.ReturnWrapMapper;
+import com.yh.common.web.wrapper.ReturnWrapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

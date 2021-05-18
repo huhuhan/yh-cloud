@@ -2,7 +2,7 @@ package com.yh.cloud.activiti.service.management;
 
 import com.github.pagehelper.Page;
 import com.yh.cloud.activiti.util.WorkflowUtils;
-import com.yh.cloud.web.wrapper.ReturnMsg;
+import com.yh.common.web.wrapper.ReturnMsg;
 import org.activiti.engine.IdentityService;
 import org.activiti.engine.identity.Group;
 import org.activiti.engine.identity.GroupQuery;

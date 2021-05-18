@@ -1,8 +1,8 @@
 package com.yh.cloud.activiti.rest.workflow;
 
 import com.yh.cloud.activiti.service.workflow.WFProcessDefinitionService;
-import com.yh.cloud.web.wrapper.ReturnWrapMapper;
-import com.yh.cloud.web.wrapper.ReturnWrapper;
+import com.yh.common.web.wrapper.ReturnWrapMapper;
+import com.yh.common.web.wrapper.ReturnWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;

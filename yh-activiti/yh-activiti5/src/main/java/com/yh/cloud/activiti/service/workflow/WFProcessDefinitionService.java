@@ -6,7 +6,7 @@ import com.github.pagehelper.Page;
 import com.yh.cloud.activiti.model.bo.DeploymentBo;
 import com.yh.cloud.activiti.model.bo.ProcessDefinitionBo;
 import com.yh.cloud.activiti.util.WorkflowUtils;
-import com.yh.cloud.web.wrapper.ReturnMsg;
+import com.yh.common.web.wrapper.ReturnMsg;
 import org.activiti.bpmn.converter.BpmnXMLConverter;
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.editor.constants.ModelDataJsonConstants;

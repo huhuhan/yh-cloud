@@ -1,5 +1,5 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.yh.cloud.auth.config.AuthPropertiesConfig,\
-com.yh.cloud.auth.token.DefaultTokenConfig,\
-com.yh.cloud.auth.token.MyJdbcTokenStore,\
-com.yh.cloud.auth.token.MyJwtTokenStore
+com.yh.common.auth.config.AuthPropertiesConfig,\
+com.yh.common.auth.token.DefaultTokenConfig,\
+com.yh.common.auth.token.MyJdbcTokenStore,\
+com.yh.common.auth.token.MyJwtTokenStore

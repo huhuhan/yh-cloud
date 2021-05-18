@@ -2,8 +2,8 @@ package com.yh.cloud.activiti.rest.management;
 
 import com.yh.cloud.activiti.fegin.MDatabaseFegin;
 import com.yh.cloud.activiti.service.management.MDatabaseService;
-import com.yh.cloud.web.wrapper.ReturnWrapMapper;
-import com.yh.cloud.web.wrapper.ReturnWrapper;
+import com.yh.common.web.wrapper.ReturnWrapMapper;
+import com.yh.common.web.wrapper.ReturnWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.activiti.engine.ManagementService;

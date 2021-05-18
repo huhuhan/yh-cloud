@@ -1,6 +1,6 @@
 package com.yh.cloud.activiti.service.management;
 
-import com.yh.cloud.web.wrapper.ReturnMsg;
+import com.yh.common.web.wrapper.ReturnMsg;
 import org.activiti.engine.ManagementService;
 import org.activiti.engine.management.TableMetaData;
 import org.activiti.engine.management.TablePage;

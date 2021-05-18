@@ -12,7 +12,7 @@ import com.yh.cloud.activiti.model.vo.CompleteTaskVo;
 import com.yh.cloud.activiti.model.vo.StartProcessInstanceVo;
 import com.yh.cloud.activiti.model.vo.TaskResultVo;
 import com.yh.cloud.base.util.BeanMapUtil;
-import com.yh.cloud.web.model.entity.CurrentUser;
+import com.yh.common.web.model.entity.CurrentUser;
 import org.apache.commons.collections4.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

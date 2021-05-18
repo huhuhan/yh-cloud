@@ -108,12 +108,27 @@
             <!--自定义模块声明-->
             <dependency>
                 <groupId>com.yh.cloud</groupId>
-                <artifactId>yh-common-web</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <artifactId>yh-common-base</artifactId>
+                <version>${yh-common.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.yh.cloud</groupId>
-                <artifactId>yh-common-base</artifactId>
+                <artifactId>yh-common-ribbon</artifactId>
+                <version>${yh-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-auth</artifactId>
+                <version>${yh-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-db</artifactId>
+                <version>${yh-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-web</artifactId>
                 <version>${yh-common.version}</version>
             </dependency>
             <!--自定义API声明-->

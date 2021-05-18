@@ -10,7 +10,7 @@ import com.yh.cloud.activiti.service.WorkFlowService;
 import com.yh.cloud.activiti.util.WorkflowUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageInfo;
-import com.yh.cloud.web.wrapper.ReturnMsg;
+import com.yh.common.web.wrapper.ReturnMsg;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;

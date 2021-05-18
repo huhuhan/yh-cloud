@@ -1,3 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.yh.cloud.db.config.MybatisPlusAutoConfiguration,\
-com.yh.cloud.db.config.DynamicDataSourceAutoConfiguration
+com.yh.common.db.config.MybatisPlusAutoConfiguration,\
+com.yh.common.db.config.DynamicDataSourceAutoConfiguration

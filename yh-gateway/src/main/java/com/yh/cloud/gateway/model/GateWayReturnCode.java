@@ -1,6 +1,6 @@
 package com.yh.cloud.gateway.model;
 
-import com.yh.cloud.web.wrapper.IReturnCode;
+import com.yh.common.web.wrapper.IReturnCode;
 
 /**
  * @author yanghan

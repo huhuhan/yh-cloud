@@ -3,10 +3,10 @@ package com.yh.cloud.activiti.leave.rest;
 
 import com.yh.cloud.activiti.leave.model.domain.UserLeave;
 import com.yh.cloud.activiti.leave.service.IUserLeaveService;
-import com.yh.cloud.web.annotation.CUser;
-import com.yh.cloud.web.model.entity.CurrentUser;
-import com.yh.cloud.web.wrapper.ReturnWrapMapper;
-import com.yh.cloud.web.wrapper.ReturnWrapper;
+import com.yh.common.web.annotation.CUser;
+import com.yh.common.web.model.entity.CurrentUser;
+import com.yh.common.web.wrapper.ReturnWrapMapper;
+import com.yh.common.web.wrapper.ReturnWrapper;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

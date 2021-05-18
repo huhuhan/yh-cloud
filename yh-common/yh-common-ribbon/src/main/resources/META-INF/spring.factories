@@ -1,2 +1,2 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.yh.cloud.ribbon.config.MyFeignAutoConfiguration
+com.yh.common.ribbon.config.MyFeignAutoConfiguration
