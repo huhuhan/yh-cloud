@@ -1,7 +1,7 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://yh:yh@sc-eureka:8761/eureka/
+      defaultZone: http://yh:yh@yh-eureka:8761/eureka/
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
     #服务实例主页的相对地址

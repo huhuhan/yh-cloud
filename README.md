@@ -9,6 +9,7 @@ Oauth2的4种认证方式和资源服务认证
 - yh-eureka
 - yh-common-web
 
+> 认证相关服务已更新，旧版相对简单理解，可以下载tag获取
 
 ### Activiti 工作流
 工作流5.22版本，集成独立服务、api服务  
