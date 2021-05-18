@@ -1,5 +1,7 @@
 package com.yh.common.auth.token;
 
+import org.apache.commons.codec.binary.Base64;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
@@ -44,12 +46,20 @@ public class MyJwtTokenStore {
 
     @Bean
     public KeyPair keyPair() {
-//        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("yh.jks"), "yh-cloud".toCharArray());
-//        return keyStoreKeyFactory.getKeyPair("yh", "yh-cloud".toCharArray());
-
         // 对照：yh-auth/yh-auth-server/src/main/resources/keytool.text
         KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("yh-cloud.jks"), "yh-admin".toCharArray());
         return keyStoreKeyFactory.getKeyPair("yh-jwt", "yh-user".toCharArray());
+    }
+
+
+    /**
+     * 获取公钥，单独保存加载
+     * @param keyPair
+     * @return
+     */
+    @Bean
+    public CommandLineRunner publicKey(KeyPair keyPair){
+        return args -> System.out.println(Base64.encodeBase64String(keyPair.getPublic().getEncoded()));
     }
 
     /**

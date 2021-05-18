@@ -2,10 +2,16 @@ server:
   port: 9000
 
 spring:
-#    profiles:
-#    active: dev
+  #  profiles:
+  #    active: dev
   application:
-    name: yh-gataway #@pom.artifactId@
+    name: yh-gataway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # jwt公钥
+          public-key-location: classpath:public.txt
   cloud:
     gateway:
       # 开启 Gateway服务发现组件，默认以大写serviceId创建路由转发规则
@@ -34,9 +40,34 @@ spring:
 # 源码：HystrixCommandProperties.executionTimeoutInMilliseconds
 hystrix:
   command:
-    # 自定义HystrixCommand
     fallbackcmd:
       execution:
         isolation:
           thread:
-            timeoutInMilliseconds: 8000
+            timeoutInMilliseconds: 60000
+
+yh:
+  swagger:
+    #自定义解析swagger组，适用某一服务的分组swagger
+    groups:
+      # 例子，服务名-组集合
+      yh-eg:
+        - bpm
+        - sys
+        - org
+    ignore:
+      - yh-actuator
+  #配置白名单路径
+  security:
+    authIgnore:
+      - "/**/oauth/**"
+      - "/**/logout"
+      - "/*/v2/api-docs"
+      - "/fallback"
+      - "/actuator/**"
+      - "/**/sys/sysFile/download"
+
+#logging:
+#  level:
+#    root: debug
+

@@ -1,4 +1,4 @@
-package com.yh.cloud.gateway.handler;
+package com.yh.cloud.gateway.swagger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.util.Optional;
  */
 @RestController
 @RequestMapping("/swagger-resources")
-public class SwaggerHandler {
+public class MySwaggerHandler {
     @Autowired(required = false)
     private SecurityConfiguration securityConfiguration;
     @Autowired(required = false)
@@ -27,7 +27,7 @@ public class SwaggerHandler {
     private final SwaggerResourcesProvider swaggerResources;
 
     @Autowired
-    public SwaggerHandler(SwaggerResourcesProvider swaggerResources) {
+    public MySwaggerHandler(SwaggerResourcesProvider swaggerResources) {
         this.swaggerResources = swaggerResources;
     }
 
