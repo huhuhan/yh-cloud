@@ -14,6 +14,7 @@
     <modules>
         <module>yh-auth-server</module>
         <module>yh-auth-client-demo</module>
+        <module>demo-user-api</module>
     </modules>
 
 </project>

@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 授权认证服务器配置
+ * 认证服务器配置
  *
  * @author yanghan
  * @date 2019/7/8
@@ -73,7 +73,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .tokenKeyAccess("permitAll()")
                 //设置/oauth/check_token可以无权访问
                 .checkTokenAccess("permitAll()")
-                //支持client_id以及client_secret作参数认证，参考源码
+                //支持client_id以及client_secret作参数认证，参考源码，即开启clientCredentialsTokenEndpointFilter过滤器
                 //否则client_id以及client_secret只能basic auth加密请求认证，实例在postman上
                 .allowFormAuthenticationForClients();
     }
@@ -118,24 +118,17 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
+        // jwtToken增强器
         TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
         List<TokenEnhancer> enhancerList = new ArrayList<>();
         enhancerList.add(jwtTokenEnhancer);
         enhancerList.add(jwtAccessTokenConverter);
         enhancerChain.setTokenEnhancers(enhancerList);
-
+        endpoints.tokenEnhancer(enhancerChain);
+        // token创建后存储在tokenStore里
+        endpoints.tokenStore(tokenStore);
         //配置认证管理对象，采用spring security的认证
-        endpoints.authenticationManager(authenticationManager)
-                //token生成器：比如InMemoryTokenStore、JwtTokenStore
-                .tokenStore(tokenStore)
-                //token解析器，自定义jwt需要配置
-//                .accessTokenConverter(jwtAccessTokenConverter)
-                //单独配置，不会和jwtAccessTokenConverter一起起效
-//                .tokenEnhancer(jwtTokenEnhancer)
-                //token增强器
-                .tokenEnhancer(enhancerChain)
-                //解析异常处理
-                .exceptionTranslator(loggingExceptionTranslator());
+        endpoints.authenticationManager(authenticationManager);
 
         //若要用到refresh_token方式获取token，需要设置refresh_token
         endpoints.userDetailsService(userDetailsService);

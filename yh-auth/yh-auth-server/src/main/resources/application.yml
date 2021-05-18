@@ -5,9 +5,43 @@ spring:
   profiles:
     active: dev
   application:
-    #bootstrap先加载，读不到pom，在application中有效
     name: yh-auth
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+
 
 logging:
   level:
     org.springframework.security: DEBUG
+
+ribbon:
+  # 响应超时时间，默认5000毫秒
+  ReadTimeout: 10000
+
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          #如果enabled设置为false，则请求超时交给ribbon控制,为true,则超时作为熔断根据
+          enabled: false
+
+
+yh:
+  oauth2:
+    token:
+      # 指定加载jwt的store方式
+      store: jwt
+
+
+swagger:
+  enabled: true
+  version: 2.0
+  base-path: /**
+  exclude-path: /error
+  authorization:
+    key-name: Authorization
+  base-package: com.yh.cloud.auth

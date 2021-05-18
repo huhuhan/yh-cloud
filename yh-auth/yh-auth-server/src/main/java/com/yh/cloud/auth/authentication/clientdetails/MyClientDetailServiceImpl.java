@@ -1,4 +1,4 @@
-package com.yh.cloud.auth.service;
+package com.yh.cloud.auth.authentication.clientdetails;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -14,7 +14,7 @@ import java.util.*;
  * @date 2019/7/2
  */
 //@Service
-public class MyClientDetailService implements ClientDetailsService {
+public class MyClientDetailServiceImpl implements ClientDetailsService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -38,7 +38,6 @@ public class MyClientDetailService implements ClientDetailsService {
 
             @Override
             public String getClientSecret() {
-//                return "secret_client_demo";
                 return passwordEncoder.encode("secret_client_demo");
             }
 

@@ -33,6 +33,14 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+            <exclusions>
+                <exclusion>
+                    <!--oauth2的认证过滤器OAuth2AuthenticationProcessingFilter，远程调用解析对象失败-->
+                    <!--剔除jackson或升级spring-cloud-starter-oauth2版本-->
+                    <groupId>com.fasterxml.jackson.dataformat</groupId>
+                    <artifactId>jackson-dataformat-xml</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

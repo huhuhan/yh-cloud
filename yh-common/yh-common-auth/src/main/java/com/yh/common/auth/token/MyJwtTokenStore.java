@@ -44,8 +44,12 @@ public class MyJwtTokenStore {
 
     @Bean
     public KeyPair keyPair() {
-        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("yh.jks"), "yh-cloud".toCharArray());
-        return keyStoreKeyFactory.getKeyPair("yh", "yh-cloud".toCharArray());
+//        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("yh.jks"), "yh-cloud".toCharArray());
+//        return keyStoreKeyFactory.getKeyPair("yh", "yh-cloud".toCharArray());
+
+        // 对照：yh-auth/yh-auth-server/src/main/resources/keytool.text
+        KeyStoreKeyFactory keyStoreKeyFactory = new KeyStoreKeyFactory(new ClassPathResource("yh-cloud.jks"), "yh-admin".toCharArray());
+        return keyStoreKeyFactory.getKeyPair("yh-jwt", "yh-user".toCharArray());
     }
 
     /**
