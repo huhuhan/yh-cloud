@@ -1,36 +1,38 @@
+## 项目简介
 
-版本：Spring Cloud Hoxton.SR5 | Spring Boot 2.2.10.RELEASE
+### 技术框架
 
-### Spring Cloud Oauth2 Demo
-Oauth2的4种认证方式和资源服务认证  
-涉及模块：
-- yh-auth-server
-- yh-auth-client-demo
-- yh-eureka
-- yh-common-web
-
-> 认证相关服务已更新，旧版相对简单理解，可以下载tag获取
-
-### Activiti 工作流
-工作流5.22版本，集成独立服务、api服务  
-参考[咖啡兔的工作流Demo](https://github.com/henryyan/kft-activiti-demo)  
-涉及模块：
-- yh-activiti-leave ：   具体业务项目，例子：请假模块
-- yh-activiti5      ：   流程项目
-- yh-activiti-api   ：   流程对外接口实体封装包
-- yh-common-base
-- yh-common-web
-- yh-eureka  
-前端项目：[yh-cloud-ui](https://github.com/huhuhan/yh-cloud-ui)
+- Spring框架版本：Spring Cloud Hoxton.SR5 | Spring Boot 2.2.10.RELEASE
+- 注册中心：Eureka
+- 服务间通信：OpenFeign
+- 服务熔断：Hystrix
+- 统一网关：Spring Cloud Gateway
+- 认证鉴权：Spring Cloud Oauth2 + JWT
+- 服务监控：Spring Boot Admin
 
 
-### hosts
+
+- 工作流引擎：Activiti
+
+
+
+### 运行前提
+
+配置Hosts
 ```python
 127.0.0.1 yh-eureka
 127.0.0.1 yh-gateway
 ```
 
-### 备注
 
-- 微服务其他组件模块的应用测试，参考[demo-all/demo-sc](https://github.com/huhuhan/demo-all/tree/master/demo-sc)
-    
+
+### 其他信息
+
+- [更新日志](https://github.com/huhuhan/yh-cloud/blob/master/UPDATE_LOG.md)
+- [前端项目](https://github.com/huhuhan/yh-cloud-ui)（适配部分项目例子）
+
+- 项目例子：
+  - Spring Cloud Oauth2 Demo：见Tag版本[oauth2](https://github.com/huhuhan/yh-cloud/releases/tag/oauth2)
+  - Activiti 工作流 Demo：见Tag版本[activiti5](https://github.com/huhuhan/yh-cloud/releases/tag/activiti5)
+- Demo演示：参考[demo-all](https://github.com/huhuhan/demo-all)项目
+
