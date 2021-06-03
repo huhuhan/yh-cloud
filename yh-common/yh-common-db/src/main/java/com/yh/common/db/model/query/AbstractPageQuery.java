@@ -23,27 +23,33 @@ import java.util.List;
 @NoArgsConstructor
 public abstract class AbstractPageQuery<T> implements Serializable {
     @ApiModelProperty("分页：第几页")
-    private Integer pageNum = 1;
+    private Long pageNum;
     @ApiModelProperty("分页：每页大小")
-    private Integer pageSize;
+    private Long pageSize;
     @ApiModelProperty("升序")
     private String order$ASC;
     @ApiModelProperty("降序")
     private String order$DESC;
 
-    public static final String NO_PAGE = "noPage";
-
     public IPage<T> initPageQuery() {
         IPage<T> queryPage = new Page<>();
-        if (null == pageNum && null == pageSize) {
-            return queryPage;
+        if (null != pageNum) {
+            queryPage.setCurrent(pageNum);
         }
-        queryPage.setCurrent(null == pageNum ? 1 : pageNum);
-        queryPage.setSize(null == pageSize ? 10 : pageSize);
+        if (null != pageSize) {
+            queryPage.setSize(pageSize);
+        }
         return queryPage;
     }
 
-    public QueryWrapper<T> initFilter(QueryWrapper<T> queryWrapper, List<String> passes) {
+    /**
+     * 适用Mybatis-Plus封装的wrapper过滤参数
+     *
+     * @param queryWrapper
+     * @param passes
+     * @return
+     */
+    public void initFilter(QueryWrapper<T> queryWrapper, List<String> passes) {
         // 当前对象属性
         Field[] fields = this.getDeclaredFields();
 
@@ -108,8 +114,10 @@ public abstract class AbstractPageQuery<T> implements Serializable {
                 }
             }
         }
+    }
 
-        return queryWrapper;
+    public void initFilter(QueryWrapper<T> queryWrapper){
+        this.initFilter(queryWrapper, null);
     }
 
     /**

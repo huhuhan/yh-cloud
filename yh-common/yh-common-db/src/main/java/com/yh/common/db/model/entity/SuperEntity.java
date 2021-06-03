@@ -1,6 +1,7 @@
 package com.yh.common.db.model.entity;
 
 import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -18,14 +19,12 @@ import java.util.Date;
 @Setter
 @Getter
 public class SuperEntity<T extends Model<?>> extends Model<T> {
-    /**
-     * 主键ID
-     */
-    @TableId
-    private String id;
-    @TableField(fill = FieldFill.INSERT)
+
+    @TableId(value = "id_", type = IdType.ASSIGN_ID)
+    private Long id;
+    @TableField(value = "create_time_", fill = FieldFill.INSERT)
     private Date createTime;
-    @TableField(fill = FieldFill.INSERT_UPDATE)
+    @TableField(value = "update_time_", fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
 
     @Override
