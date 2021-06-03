@@ -1,0 +1,14 @@
+package ${package}.${moduleName}.mapper;
+
+import ${package}.${moduleName}.model.entity.${className};
+import com.yh.common.db.mapper.SuperMapper;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface ${className}Mapper extends SuperMapper<${className}> {
+
+}

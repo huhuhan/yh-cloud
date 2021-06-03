@@ -1,0 +1,55 @@
+package ${package}.${moduleName}.model.entity;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+#if(${hasBigDecimal})
+import java.math.BigDecimal;
+#end
+#if(${hasSuperEntity})
+import com.yh.common.db.model.entity.SuperEntity;
+import java.util.Date;
+#else
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.IdType;
+#end
+import com.baomidou.mybatisplus.annotation.TableField;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+@TableName("${tableName}")
+@ApiModel(value = "${className}", description = "${comments}")
+#if(${hasSuperEntity})
+public class ${className} extends SuperEntity {
+#else
+public class ${className} {
+#end
+    private static final long serialVersionUID = 1L;
+#foreach ($column in $columns)
+    #if(${hasSuperEntity})
+    #if($column.columnName != 'id_' && $column.columnName != "create_time_" && $column.columnName != "update_time_")
+    @ApiModelProperty(value = "${column.comments}")
+    @TableField(value = "${column.columnName}")
+    private $column.attrType $column.attrname;
+    #end
+    #else
+    #if($column.columnName == $pk.columnName)
+    @TableId(value = "${column.columnName}", type = IdType.ASSIGN_ID)
+    #else
+    @TableField(value = "${column.columnName}")
+    #end
+    @ApiModelProperty(value = "${column.comments}")
+    private $column.attrType $column.attrname;
+    #end
+#end
+}

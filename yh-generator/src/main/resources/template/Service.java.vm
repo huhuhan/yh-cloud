@@ -1,0 +1,24 @@
+package ${package}.${moduleName}.service;
+
+import ${package}.${moduleName}.model.entity.${className};
+import ${package}.${moduleName}.model.vo.${className}Query;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.yh.common.db.service.ISuperService;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface I${className}Service extends ISuperService<${className}> {
+    /**
+     * 列表
+     * @author ${author}
+     * @param ${classname}Query
+     * @return com.baomidou.mybatisplus.core.metadata.IPage
+     * @date ${datetime}
+     */
+    IPage<${className}> findList(${className}Query<${className}> ${classname}Query);
+}
+

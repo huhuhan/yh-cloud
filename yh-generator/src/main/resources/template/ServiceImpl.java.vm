@@ -1,0 +1,29 @@
+package ${package}.${moduleName}.service.impl;
+
+import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.yh.common.db.service.impl.SuperServiceImpl;
+import ${package}.${moduleName}.model.entity.${className};
+import ${package}.${moduleName}.model.vo.${className}Query;
+import ${package}.${moduleName}.mapper.${className}Mapper;
+import ${package}.${moduleName}.service.I${className}Service;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@Service
+public class ${className}ServiceImpl extends SuperServiceImpl<${className}Mapper, ${className}> implements I${className}Service {
+
+    @Override
+    public IPage<${className}> findList(${className}Query<${className}> ${classname}Query) {
+        IPage<${className}> pageQuery = ${classname}Query.initPageQuery();
+        QueryWrapper<${className}> queryWrapper = Wrappers.query();
+        ${classname}Query.initFilter(queryWrapper);
+        return this.page(pageQuery, queryWrapper);
+    }
+}

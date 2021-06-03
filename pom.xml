@@ -23,6 +23,7 @@
         <module>yh-activiti</module>
         <module>yh-gateway</module>
         <module>yh-actuator</module>
+        <module>yh-generator</module>
     </modules>
 
     <!--版本号-->

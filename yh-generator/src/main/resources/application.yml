@@ -1,0 +1,27 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/test_base?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+    username: root
+    password: yanghan
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: yh-generator
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.yh.cloud.generator.model
+
+
+
+server:
+  port: 8300
+
+
+swagger:
+  enabled: true
+  version: 2.0
+  base-path: /**
+  exclude-path: /error
+  authorization:
+    key-name: Authorization
+  base-package: com.yh.cloud

@@ -1,0 +1,50 @@
+package ${package}.${moduleName}.controller;
+
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import ${package}.${moduleName}.model.entity.${className};
+import ${package}.${moduleName}.model.vo.${className}Query;
+import ${package}.${moduleName}.service.I${className}Service;
+import com.yh.common.web.wrapper.ReturnWrapMapper;
+import com.yh.common.web.wrapper.ReturnWrapper;
+
+/**
+ * ${comments}
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("/${pathName}")
+@Api(tags = "${comments}")
+public class ${className}Controller {
+    @Autowired
+    private I${className}Service ${classname}Service;
+
+    @ApiOperation(value = "查询列表")
+    @GetMapping("/list")
+    public ReturnWrapper<IPage<${className}>> findList(${className}Query<${className}> ${classname}Query) {
+        return ReturnWrapMapper.ok(${classname}Service.findList(${classname}Query));
+    }
+
+    @ApiOperation(value = "查询对象")
+    @GetMapping("/{${pk.attrname}}")
+    public ReturnWrapper<${className}> findById(@PathVariable Long ${pk.attrname}) {
+        return ReturnWrapMapper.ok(${classname}Service.getById(${pk.attrname}));
+    }
+
+    @ApiOperation(value = "保存or更新")
+    @PostMapping
+    public ReturnWrapper save(@RequestBody ${className} ${classname}) {
+        return ReturnWrapMapper.ok(${classname}Service.saveOrUpdate(${classname}));
+    }
+
+    @ApiOperation(value = "删除")
+    @DeleteMapping("/{id}")
+    public ReturnWrapper delete(@PathVariable Long ${pk.attrname}) {
+        return ReturnWrapMapper.ok(${classname}Service.removeById(${pk.attrname}));
+    }
+}
