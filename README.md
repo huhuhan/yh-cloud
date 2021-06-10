@@ -9,20 +9,8 @@
 - 统一网关：Spring Cloud Gateway
 - 认证鉴权：Spring Cloud Oauth2 + JWT
 - 服务监控：Spring Boot Admin
-
-
-
 - 工作流引擎：Activiti
 
-
-
-### 运行前提
-
-配置Hosts
-```python
-127.0.0.1 yh-eureka
-127.0.0.1 yh-gateway
-```
 
 ### 服务模块
 
@@ -33,13 +21,13 @@
 │  │
 │  ├─yh-actuator------------------------健康监控服务
 │  │
-│  ├─yh-auth----------------------------认证鉴权服务
+│  ├─yh-auth----------------------------认证鉴权服务（授权中心）
 │  │
 │  ├─yh-common--------------------------公共依赖
 │  │
-│  ├─yh-gateway-------------------------网关服务
+│  ├─yh-gateway-------------------------网关服务（统一网关）
 │  │
-│  ├─yh-eureka--------------------------微服务注册中心
+│  ├─yh-eureka--------------------------注册中心
 │  │
 │  ├─yh-gateway-------------------------网关服务
 │  │
@@ -50,11 +38,14 @@
 
 ### 其他信息
 
+- [开发说明](https://github.com/huhuhan/yh-cloud/blob/master/DEVELOPMENT_DOC.md)
 - [更新日志](https://github.com/huhuhan/yh-cloud/blob/master/UPDATE_LOG.md)
 - [前端项目](https://github.com/huhuhan/yh-cloud-ui)（适配部分项目例子）
+
 
 - 项目例子：
   - Spring Cloud Oauth2 Demo：见Tag版本[oauth2](https://github.com/huhuhan/yh-cloud/releases/tag/oauth2)
   - Activiti 工作流 Demo：见Tag版本[activiti5](https://github.com/huhuhan/yh-cloud/releases/tag/activiti5)
 - Demo演示：参考[demo-all](https://github.com/huhuhan/demo-all)项目
+
 
