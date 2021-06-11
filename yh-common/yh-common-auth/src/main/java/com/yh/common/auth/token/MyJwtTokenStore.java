@@ -57,10 +57,10 @@ public class MyJwtTokenStore {
      * @param keyPair
      * @return
      */
-    @Bean
-    public CommandLineRunner publicKey(KeyPair keyPair){
-        return args -> System.out.println(Base64.encodeBase64String(keyPair.getPublic().getEncoded()));
-    }
+//    @Bean
+//    public CommandLineRunner publicKey(KeyPair keyPair){
+//        return args -> System.out.println(Base64.encodeBase64String(keyPair.getPublic().getEncoded()));
+//    }
 
     /**
      * 令牌增强器，即token添加额外信息
