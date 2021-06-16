@@ -28,53 +28,56 @@
 2. 补充以下依赖
 
    ```xml
-   <dependencies>       
-   	<dependency>
-           <groupId>com.yh.cloud</groupId>
-           <artifactId>yh-common-base</artifactId>
-       </dependency>
-       <dependency>
-           <groupId>com.yh.cloud</groupId>
-           <artifactId>yh-common-web</artifactId>
-       </dependency>
-       <dependency>
-           <groupId>com.yh.cloud</groupId>
-           <artifactId>yh-common-db</artifactId>
-       </dependency>  
-   	<!--可选-->
-       <dependency>
-           <groupId>com.yh.cloud</groupId>
-           <artifactId>yh-common-ribbon</artifactId>
-       </dependency>
-   	<!--可选-->
-       <dependency>
-           <groupId>com.yh.cloud</groupId>
-           <artifactId>yh-common-auth</artifactId>
-       </dependency>
-   </dependencies>
+   <project>
+       <dependencies>       
+           <dependency>
+               <groupId>com.yh.cloud</groupId>
+               <artifactId>yh-common-base</artifactId>
+           </dependency>
+           <dependency>
+               <groupId>com.yh.cloud</groupId>
+               <artifactId>yh-common-web</artifactId>
+           </dependency>
+           <dependency>
+               <groupId>com.yh.cloud</groupId>
+               <artifactId>yh-common-db</artifactId>
+           </dependency>  
+           <!--可选-->
+           <dependency>
+               <groupId>com.yh.cloud</groupId>
+               <artifactId>yh-common-ribbon</artifactId>
+           </dependency>
+           <!--可选-->
+           <dependency>
+               <groupId>com.yh.cloud</groupId>
+               <artifactId>yh-common-auth</artifactId>
+           </dependency>
+       </dependencies>
    
-   <build>
-       <plugins>
-           <plugin>
-               <groupId>org.springframework.boot</groupId>
-               <artifactId>spring-boot-maven-plugin</artifactId>
-               <configuration>
-                   <!--可执行jar，要求有输入函数main-->
-                   <executable>true</executable>
-               </configuration>
-               <executions>
-                   <execution>
-                       <goals>
-                           <!--将其他依赖包也打包进去-->
-                           <goal>repackage</goal>
-                       </goals>
-                   </execution>
-               </executions>
-           </plugin>
-       </plugins>
-       <!--打包包名-->
-       <finalName>${project.artifactId}</finalName>
-   </build>
+       <build>
+           <plugins>
+               <plugin>
+                   <groupId>org.springframework.boot</groupId>
+                   <artifactId>spring-boot-maven-plugin</artifactId>
+                   <configuration>
+                       <!--可执行jar，要求有输入函数main-->
+                       <executable>true</executable>
+                   </configuration>
+                   <executions>
+                       <execution>
+                           <goals>
+                               <!--将其他依赖包也打包进去-->
+                               <goal>repackage</goal>
+                           </goals>
+                       </execution>
+                   </executions>
+               </plugin>
+           </plugins>
+           <!--打包包名-->
+           <finalName>${project.artifactId}</finalName>
+       </build>
+   </project>
+
    ```
 
 
@@ -109,11 +112,13 @@
                <scope>import</scope>
            </dependency>
            <!--************************本项目******************-->
+       </dependencies>
    </dependencyManagement>
    ```
-
-   基本依赖版本号
-
+```
+   
+基本依赖版本号
+   
    ```xml
    <!--版本号-->
    <properties>
@@ -129,7 +134,7 @@
        <spring-boot.version>2.2.10.RELEASE</spring-boot.version>
        <spring.cloud.version>Hoxton.SR5</spring.cloud.version>
    </properties>
-   ```
+```
 
    
 
@@ -170,7 +175,7 @@ eureka:
 
 - 方式一，请求头带`Authorization`参数
 
-  ```json
+  ```go
     headers: { 
       'Authorization': 'Bearer 1b03594f-c51d-4a7a-9274-d018d27a7ff8'
     }
@@ -178,7 +183,7 @@ eureka:
 
 - 方式二，请求中参数`access_token`
 
-  ```json
+  ```go
   {
    'access_token': '1b03594f-c51d-4a7a-9274-d018d27a7ff8' 
   }
@@ -250,18 +255,20 @@ eureka:
 - 生成的模板代码，依赖于
 
   ```xml
-          <dependency>
-              <groupId>com.yh.cloud</groupId>
-              <artifactId>yh-common-web</artifactId>
-          </dependency>
-          <dependency>
-              <groupId>com.yh.cloud</groupId>
-              <artifactId>yh-common-db</artifactId>
-          </dependency>
-          <dependency>
-              <groupId>com.yh.cloud</groupId>
-              <artifactId>yh-common-base</artifactId>
-          </dependency>
+  <dependencies>
+      <dependency>
+          <groupId>com.yh.cloud</groupId>
+          <artifactId>yh-common-web</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.yh.cloud</groupId>
+          <artifactId>yh-common-db</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.yh.cloud</groupId>
+          <artifactId>yh-common-base</artifactId>
+      </dependency>
+  </dependencies>
   ```
 
   
