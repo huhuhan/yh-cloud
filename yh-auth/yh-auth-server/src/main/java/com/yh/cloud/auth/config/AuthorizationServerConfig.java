@@ -1,14 +1,14 @@
 package com.yh.cloud.auth.config;
 
+import com.yh.common.auth.token.TokenGrantConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.common.exceptions.OAuth2Exception;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
@@ -16,15 +16,11 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.core.AuthorizationGrantType;
+import org.springframework.security.oauth2.provider.TokenGranter;
 import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
-import org.springframework.security.oauth2.provider.token.TokenEnhancer;
-import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
-import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 认证服务器配置
@@ -34,6 +30,7 @@ import java.util.List;
  */
 @Configuration
 @EnableAuthorizationServer
+@Import(TokenGrantConfig.class)
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /** 申明认证对象，采用spring security的认证对象 */
@@ -48,17 +45,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private TokenStore tokenStore;
 
-    /** jwtToken的转化器 */
     @Autowired
-    private JwtAccessTokenConverter jwtAccessTokenConverter;
-
-    /** jwtToken自定义扩展对象 */
-    @Autowired
-    @Qualifier("jwtTokenEnhancer")
-    private TokenEnhancer jwtTokenEnhancer;
-
-    @Autowired
-    private UserDetailsService userDetailsService;
+    private TokenGranter tokenGranter;
 
     /**
      * 授权服务安全认证的配置
@@ -96,7 +84,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 //作用域
                 .scopes("all")
                 //支持授权客户端的权限类型,共5种
-                .authorizedGrantTypes("implicit", "authorization_code", "refresh_token", "client_credentials", "password")
+                .authorizedGrantTypes(AuthorizationGrantType.IMPLICIT.getValue(),
+                        AuthorizationGrantType.AUTHORIZATION_CODE.getValue(),
+                        AuthorizationGrantType.REFRESH_TOKEN.getValue(),
+                        AuthorizationGrantType.CLIENT_CREDENTIALS.getValue(),
+                        AuthorizationGrantType.PASSWORD.getValue())
                 //授权客户端的权限
                 .authorities("client_x")
                 //demo：authorization_code方式，需要重定向地址参数，响应的code验证码会加载该地址后面
@@ -118,20 +110,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) {
-        // jwtToken增强器
-        TokenEnhancerChain enhancerChain = new TokenEnhancerChain();
-        List<TokenEnhancer> enhancerList = new ArrayList<>();
-        enhancerList.add(jwtTokenEnhancer);
-        enhancerList.add(jwtAccessTokenConverter);
-        enhancerChain.setTokenEnhancers(enhancerList);
-        endpoints.tokenEnhancer(enhancerChain);
-        // token创建后存储在tokenStore里
+        // 要保证创建的token和验证的token来自同个TokenStore
         endpoints.tokenStore(tokenStore);
-        //配置认证管理对象，采用spring security的认证
+        /**
+         * 默认支持4种模式，添加后authenticationManager才支持password模式
+         * 参考 {@link AuthorizationServerEndpointsConfigurer 的getDefaultTokenGranters()方法 }
+         */
         endpoints.authenticationManager(authenticationManager);
 
-        //若要用到refresh_token方式获取token，需要设置refresh_token
-        endpoints.userDetailsService(userDetailsService);
+        // 自定义授权模式（5+N）
+        endpoints.tokenGranter(tokenGranter);
     }
 
     @Bean
