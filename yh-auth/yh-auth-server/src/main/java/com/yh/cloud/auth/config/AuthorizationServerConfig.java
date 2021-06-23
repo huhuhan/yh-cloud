@@ -1,5 +1,6 @@
 package com.yh.cloud.auth.config;
 
+import com.yh.common.auth.token.AuthorizationCodeServicesConfig;
 import com.yh.common.auth.token.TokenGrantConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,6 +19,7 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.core.AuthorizationGrantType;
 import org.springframework.security.oauth2.provider.TokenGranter;
+import org.springframework.security.oauth2.provider.code.AuthorizationCodeServices;
 import org.springframework.security.oauth2.provider.error.DefaultWebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.error.WebResponseExceptionTranslator;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -30,7 +32,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
  */
 @Configuration
 @EnableAuthorizationServer
-@Import(TokenGrantConfig.class)
+@Import({TokenGrantConfig.class, AuthorizationCodeServicesConfig.class})
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
 
     /** 申明认证对象，采用spring security的认证对象 */
@@ -47,6 +49,8 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
     @Autowired
     private TokenGranter tokenGranter;
+    @Autowired
+    private AuthorizationCodeServices authorizationCodeServices;
 
     /**
      * 授权服务安全认证的配置
@@ -120,6 +124,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         // 自定义授权模式（5+N）
         endpoints.tokenGranter(tokenGranter);
+        endpoints.authorizationCodeServices(authorizationCodeServices);
     }
 
     @Bean

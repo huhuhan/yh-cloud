@@ -2,11 +2,11 @@ package com.yh.common.auth.config;
 
 import com.yh.common.auth.properties.AuthProperties;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.ExpressionUrlAuthorizationConfigurer;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.oauth2.config.annotation.web.configuration.ResourceServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configurers.ResourceServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.expression.OAuth2WebSecurityExpressionHandler;
@@ -42,25 +42,29 @@ public class DefaultResourceServerConfig extends ResourceServerConfigurerAdapter
         if (null != tokenStore) {
             resources.tokenStore(tokenStore);
         }
-        resources.stateless(true)
+
+        resources
                 .authenticationEntryPoint(authenticationEntryPoint)
                 .expressionHandler(expressionHandler)
-                .accessDeniedHandler(accessDeniedHandler);
+                .accessDeniedHandler(accessDeniedHandler)
+                // 默认session就是严格模式，即不会创建session，每次请求都要认证，和Security的默认配置有区别
+                //.stateless(true)
+        ;
     }
 
     @Override
     public void configure(HttpSecurity http) throws Exception {
         ExpressionUrlAuthorizationConfigurer<HttpSecurity>.AuthorizedUrl authorizedUrl = this.setHttp(http)
                 .authorizeRequests()
+                .requestMatchers(EndpointRequest.toAnyEndpoint()).permitAll()
                 .antMatchers(authProperties.getAuthIgnore()).permitAll()
                 .antMatchers(HttpMethod.OPTIONS).permitAll()
                 .antMatchers(AuthProperties.TEST_URL).hasRole("YH")
                 .anyRequest();
         this.setAuthenticate(authorizedUrl);
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED)
-                .and()
-                .httpBasic().disable()
+        // 禁用部分属性
+        http.httpBasic().disable()
                 .headers()
                 .frameOptions().disable()
                 .and()

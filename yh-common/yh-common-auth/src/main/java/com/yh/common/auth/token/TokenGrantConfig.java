@@ -1,7 +1,6 @@
 package com.yh.common.auth.token;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
@@ -48,10 +47,10 @@ public class TokenGrantConfig {
     private JwtAccessTokenConverter jwtAccessTokenConverter;
     /** jwtToken自定义扩展对象 */
     @Autowired
-    @Qualifier("jwtTokenEnhancer")
     private TokenEnhancer jwtTokenEnhancer;
 
     /** authorization_code模式的生成接口 */
+    @Autowired
     private AuthorizationCodeServices authorizationCodeServices;
 
     /** 刷新令牌支持更新 */
