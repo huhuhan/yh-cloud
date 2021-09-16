@@ -37,7 +37,7 @@ public class ${className}Controller {
     }
 
     @ApiOperation(value = "保存or更新")
-    @PostMapping
+    @PostMapping("/save")
     public ReturnWrapper save(@RequestBody ${className} ${classname}) {
         return ReturnWrapMapper.ok(${classname}Service.saveOrUpdate(${classname}));
     }
