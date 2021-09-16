@@ -10,12 +10,12 @@ import com.yh.common.web.service.ICurrentUserService;
  */
 public class DefaultCurrentUserServiceImpl implements ICurrentUserService {
     @Override
-    public ICurrentUser getCurrentUserByUserId(String userId) {
+    public ICurrentUser getByUserId(String userId) {
         return null;
     }
 
     @Override
-    public ICurrentUser getCurrentUserByUserName(String username) {
+    public ICurrentUser getByUserName(String username) {
         return null;
     }
 }

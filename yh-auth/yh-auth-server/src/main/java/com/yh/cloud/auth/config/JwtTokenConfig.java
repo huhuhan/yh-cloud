@@ -39,7 +39,7 @@ public class JwtTokenConfig {
                     info.put("username", myUserDetails.getUsername());
                     info.put("nickname", myUserDetails.getNickname());
                     // 租户唯一ID
-                    ICurrentUser currentUser = iCurrentUserService.getCurrentUserByUserId(myUserDetails.getUserId());
+                    ICurrentUser currentUser = iCurrentUserService.getByUserId(myUserDetails.getUserId());
                     info.put("tenantId", currentUser.getTenantId());
                 }
             } else {

@@ -65,7 +65,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
     private MyUserDetails getMyUserDetails(String username) {
         // todo: 扩展，缓存存储、读取
 
-        ICurrentUser iCurrentUser = iCurrentUserService.getCurrentUserByUserName(username);
+        ICurrentUser iCurrentUser = iCurrentUserService.getByUserName(username);
         if (null == iCurrentUser || null == iCurrentUser.getUserId()) {
             // todo：测试用户
             iCurrentUser = this.getTempUser(username);

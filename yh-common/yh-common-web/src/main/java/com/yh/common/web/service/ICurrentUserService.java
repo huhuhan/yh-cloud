@@ -13,12 +13,12 @@ public interface ICurrentUserService {
      * @param userId 唯一ID
      * @return ICurrentUser
      */
-    ICurrentUser getCurrentUserByUserId(String userId);
+    ICurrentUser getByUserId(String userId);
 
     /**
      * 根据用户唯一登录名获取对象
      * @param username 唯一用户名称
      * @return ICurrentUser
      */
-    ICurrentUser getCurrentUserByUserName(String username);
+    ICurrentUser getByUserName(String username);
 }

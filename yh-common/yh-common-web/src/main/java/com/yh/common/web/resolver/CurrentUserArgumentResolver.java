@@ -67,7 +67,7 @@ public class CurrentUserArgumentResolver implements HandlerMethodArgumentResolve
 
         if (null != iCurrentUserService) {
             String userId = nativeWebRequest.getHeader(BaseConstant.HEADER_CURRENT_USER_ID);
-            user = iCurrentUserService.getCurrentUserByUserId(userId);
+            user = iCurrentUserService.getByUserId(userId);
         } else {
             throw new MissingServletRequestPartException("ICurrentUserService is not load !");
         }

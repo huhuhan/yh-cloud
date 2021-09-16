@@ -16,12 +16,12 @@ public class ICurrentUserServiceImpl implements ICurrentUserService {
     private IUserFnClient iUserFnClient;
 
     @Override
-    public CurrentUser getCurrentUserByUserId(String userId) {
+    public CurrentUser getByUserId(String userId) {
         return iUserFnClient.getUserById(userId);
     }
 
     @Override
-    public CurrentUser getCurrentUserByUserName(String username) {
+    public CurrentUser getByUserName(String username) {
         return iUserFnClient.getUserByUsername(username);
     }
 }
