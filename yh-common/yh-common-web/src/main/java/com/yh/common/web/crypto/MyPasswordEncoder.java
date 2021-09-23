@@ -1,4 +1,4 @@
-package com.yh.cloud.auth.crypto;
+package com.yh.common.web.crypto;
 
 import org.apache.tomcat.util.codec.binary.Base64;
 import org.springframework.security.crypto.password.PasswordEncoder;
