@@ -1,6 +1,14 @@
 ## 项目更新日志
 
 
+### v1.1
+
+- 新增yh-generator模块，模板配置的代码生成器，自动生成增删改查接口
+- 新增yh-user模块
+  - yh-user-server：基于代码生成器创建的新服务，供集成参考
+  - yh-user-api：作为提供其他服务调用的API包。例子，替换yh-auth-server的demo-user-api引用
+
+
 
 ### v1.0
 
