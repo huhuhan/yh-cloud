@@ -9,6 +9,7 @@ import lombok.Getter;
 @Getter
 //@AllArgsConstructor
 public enum ReturnCode implements IReturnCode {
+    /** 系统状态码 */
     SUCCESS("Success", "成功", "S200"),
     ERROR("Error", "失败", "S500"),
     ILLEGAL_PARAMETER("Invalid Parameter", "非法参数", "S400"),
@@ -17,8 +18,16 @@ public enum ReturnCode implements IReturnCode {
     UNAUTHORIZED("Unauthorized", "未登录或Token过期！", "S401"),
     FORBIDDEN("Invalid Token", "没有权限，拒绝访问！", "S403"),
 
-    /** 业务响应枚举 *********************/
-    PARAMETER_ERROR("\"%s\" Parameter Missing", "%s参数丢失", "0001E");
+    /** 业务通用状态码 */
+    PARAMETER_ERROR("\"%s\" Parameter Missing", "%s参数丢失", "E001"),
+    UNAUTHORIZED_OPERATION("Unauthorized operation", "无权操作", "E002"),
+
+    /** 用户组织状态码 */
+    USER_01("User already exists", "用户已存在！", "E1001"),
+    USER_02("User does not exist", "用户不存在！", "E1002"),
+    USER_03("The original password is incorrect", "原密码不正确！", "E1003"),
+    ;
+
 
     /**
      * 业务响应对象封装

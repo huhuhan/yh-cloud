@@ -8,6 +8,7 @@
 127.0.0.1 yh-gateway
 ```
 
+
 ### 服务启动
 
 依次启动
@@ -15,9 +16,14 @@
 1. yh-eureka
 2. yh-gateway
 3. yh-actuator (可选）
-4. yh-auth-server (可选）
+4. yh-auth-server (可选，默认采用demo-user-api）
+5. yh-user-server (可选，替代demo-user-api)
+
 
 ## 业务服务
+
+> 参考例子：yh-user
+
 
 ### 新建服务
 
@@ -81,7 +87,6 @@
    ```
 
 
-
 #### 创建单独项目
 
 1. 创建Maven项目（New Project），选择Maven
@@ -139,7 +144,6 @@
    
 
 
-
 ### 服务注册
 
 引入依赖包
@@ -159,9 +163,6 @@ eureka:
   instance:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
 ```
-
-
-
 
 
 ### 认证鉴权
@@ -190,7 +191,6 @@ eureka:
   ```
 
 
-
 ### 网络隔离模式
 
 - 默认模式，【yh-gateway】已集成认证鉴权
@@ -199,7 +199,6 @@ eureka:
 
 - 获取授权，请求经【yh-gateway】转发至【yh--auth-server】
 - 请求，【yh-gateway】认证鉴权，再转发
-
 
 
 ### 无网络隔离模式
@@ -244,6 +243,7 @@ eureka:
 
      
 
+
 ### 代码生成器
 
 - 启动【yh-generator】服务，访问Swagger地址
@@ -268,8 +268,21 @@ eureka:
           <groupId>com.yh.cloud</groupId>
           <artifactId>yh-common-base</artifactId>
       </dependency>
+      <!-- 数据库驱动依赖自行选择 -->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+      </dependency>
   </dependencies>
   ```
 
-  
+- 应用，mybatis-plus的配置
+
+    ```java
+    @Configuration
+    @MapperScan(value = {"com.yh.cloud.xx.mapper"})
+    public class MyBatisPlusConfig {
+    }
+    ```
+
 

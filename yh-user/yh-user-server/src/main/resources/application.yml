@@ -5,16 +5,16 @@ spring:
     password: yanghan
     driver-class-name: com.mysql.cj.jdbc.Driver
   application:
-    name: yh-generator
+    name: yh-user
 mybatis-plus:
   mapper-locations: classpath:/mapper/*Mapper.xml
   #实体扫描，多个package用逗号或者分号分隔
-  typeAliasesPackage: com.yh.cloud.generator.model
+  typeAliasesPackage: com.yh.cloud.user.model.entity
 
 
 
 server:
-  port: 8200
+  port: 9011
 
 
 swagger:

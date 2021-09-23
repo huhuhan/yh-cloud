@@ -13,4 +13,9 @@ public interface BaseConstant {
     String HEADER_CURRENT_USER = "yh-current-user";
     String HEADER_CURRENT_USER_ID = "yh-user-id";
     String HEADER_CURRENT_TENANT_ID = "yh-tenant-id";
+
+    /** 管理员用户ID */
+    String ADMIN_USER_ID = "50831";
+    /** 默认密码 */
+    String DEFAULT_PWD = "a123456";
 }

@@ -41,6 +41,13 @@
             <artifactId>demo-user-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
+        <!--用户开放API，需要启动yh-user-server服务-->
+        <!--<dependency>
+            <groupId>com.yh.cloud</groupId>
+            <artifactId>yh-user-api</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>-->
     </dependencies>
 
     <build>

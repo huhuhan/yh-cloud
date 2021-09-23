@@ -24,6 +24,7 @@
         <module>yh-gateway</module>
         <module>yh-actuator</module>
         <module>yh-generator</module>
+        <module>yh-user</module>
     </modules>
 
     <!--版本号-->
@@ -286,4 +287,23 @@
         </dependencies>
     </dependencyManagement>
 
+    <!--<build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
+            </plugin>
+        </plugins>
+        <finalName>bpm</finalName>
+    </build>-->
 </project>
