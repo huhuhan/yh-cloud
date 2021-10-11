@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yh.cloud.generator.mapper.PostgreSQLMapper">
+	<select id="getTableList" resultType="com.yh.cloud.generator.model.po.TablePo">
+		SELECT
+			tt.tablename tableName,
+-- 			tt.tableowner,
+			CAST ( obj_description ( cc.relfilenode, 'pg_class' ) AS VARCHAR ) AS tableComment
+		FROM
+			pg_class cc
+		INNER JOIN pg_tables tt ON tt.tablename = cc.relname
+		WHERE
+		<if test="p.schema != null and p.schema.trim() != ''">
+			tt.schemaname = #{p.schema}
+		</if>
+		ORDER BY
+			tt.tablename
+	</select>
+
+	<select id="getTableColumn" resultType="com.yh.cloud.generator.model.po.ColumnPo">
+		SELECT
+			pa.attname AS columnName,
+			pt.typname AS dataType,
+-- 			concat_ws ( '', pt.typname, SUBSTRING ( format_type ( pa.atttypid, pa.atttypmod ) FROM '\(.*\)' ) ) AS dataType,
+			pd.description AS columnComment
+		FROM
+			pg_class AS pc
+				INNER JOIN pg_attribute AS pa ON pa.attrelid = pc.oid
+				INNER JOIN pg_type AS pt ON pa.atttypid = pt.oid
+				INNER JOIN pg_description AS pd ON pd.objoid = pa.attrelid
+				AND pd.objsubid = pa.attnum
+		WHERE
+			pc.relname = #{tableName}
+		  AND pa.attnum > 0
+		ORDER BY
+			pc.relname DESC,
+			pa.attnum ASC
+    </select>
+</mapper>

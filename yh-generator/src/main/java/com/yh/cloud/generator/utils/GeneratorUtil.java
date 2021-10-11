@@ -6,13 +6,13 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.dialect.Props;
-import com.yh.cloud.generator.model.emun.GeneratorConstant;
 import com.yh.cloud.generator.model.emun.DataType;
+import com.yh.cloud.generator.model.emun.GeneratorConstant;
 import com.yh.cloud.generator.model.entity.ColumnEntity;
 import com.yh.cloud.generator.model.entity.TableEntity;
+import com.yh.cloud.generator.model.po.ColumnPo;
 import com.yh.cloud.generator.model.po.GeneratorPo;
-import com.yh.cloud.generator.model.po.MySqlColumnPo;
-import com.yh.cloud.generator.model.po.MySqlTablePo;
+import com.yh.cloud.generator.model.po.TablePo;
 import org.apache.commons.io.IOUtils;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
@@ -21,18 +21,18 @@ import org.apache.velocity.app.Velocity;
 import java.io.File;
 import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
-import java.sql.Struct;
 import java.util.*;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 /**
  * 代码生成器工具类
+ *
  * @author yanghan
  * @date 2021/6/2
  */
-public class GenUtils {
-    private GenUtils() {
+public class GeneratorUtil {
+    private GeneratorUtil() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -58,9 +58,9 @@ public class GenUtils {
         BeanUtil.copyProperties(params, result, CopyOptions.create().ignoreNullValue());
         Console.log("GeneratorPo: {}", result.toString());
 
-        Map<String, Object> map  = BeanUtil.beanToMap(result);
+        Map<String, Object> map = BeanUtil.beanToMap(result);
         for (Map.Entry<String, Object> entry : map.entrySet()) {
-            if(null == entry.getValue()){
+            if (null == entry.getValue()) {
                 throw new Exception(String.format("【%s】不能为空！", entry.getKey()));
             }
         }
@@ -132,7 +132,7 @@ public class GenUtils {
      * @param columns
      * @param zip
      */
-    public static void generatorCode(GeneratorPo generatorPo, MySqlTablePo table, List<MySqlColumnPo> columns, ZipOutputStream zip) {
+    public static void generatorCode(GeneratorPo generatorPo, TablePo table, List<ColumnPo> columns, ZipOutputStream zip) {
         //表信息
         TableEntity tableEntity = new TableEntity();
         tableEntity.setTableName(table.getTableName());
@@ -144,7 +144,7 @@ public class GenUtils {
 
         List<ColumnEntity> columnList = new ArrayList<>();
         boolean hasBigDecimal = false;
-        for (MySqlColumnPo column : columns) {
+        for (ColumnPo column : columns) {
             //列信息
             ColumnEntity columnEntity = new ColumnEntity();
             columnEntity.setColumnName(column.getColumnName());

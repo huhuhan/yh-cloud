@@ -246,9 +246,11 @@ eureka:
 
 ### 代码生成器
 
-- 启动【yh-generator】服务，访问Swagger地址
+- 支持数据库：MySQL、PostgreSQL
 
-- 请求接口`/generator/mysql/`
+- 修改application的数据库源配置
+
+- 启动【yh-generator】服务，访问Swagger地址
 
 - 默认配置文件参考`generator.properties`，接口请求参数支持覆盖
 
@@ -268,11 +270,7 @@ eureka:
           <groupId>com.yh.cloud</groupId>
           <artifactId>yh-common-base</artifactId>
       </dependency>
-      <!-- 数据库驱动依赖自行选择 -->
-      <dependency>
-          <groupId>mysql</groupId>
-          <artifactId>mysql-connector-java</artifactId>
-      </dependency>
+      <!-- 数据库驱动依赖自行添加 -->
   </dependencies>
   ```
 
