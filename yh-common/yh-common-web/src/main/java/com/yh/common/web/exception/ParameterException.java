@@ -11,6 +11,6 @@ public class ParameterException extends BusinessException {
     private static final long serialVersionUID = -995417249630826674L;
 
     public ParameterException(String parameter) {
-        super(String.format(ReturnCode.PARAMETER_ERROR.getMessage(), parameter), ReturnCode.PARAMETER_ERROR.getCode());
+        super(ReturnCode.PARAMETER_ERROR.getMessage() + "：" + parameter, ReturnCode.PARAMETER_ERROR.getCode());
     }
 }

@@ -19,7 +19,7 @@ public enum ReturnCode implements IReturnCode {
     FORBIDDEN("Invalid Token", "没有权限，拒绝访问！", "S403"),
 
     /** 业务通用状态码 */
-    PARAMETER_ERROR("\"%s\" Parameter Missing", "%s参数丢失", "E001"),
+    PARAMETER_ERROR("Parameter Missing", "缺失参数", "E001"),
     UNAUTHORIZED_OPERATION("Unauthorized operation", "无权操作", "E002"),
 
     /** 用户组织状态码 */
