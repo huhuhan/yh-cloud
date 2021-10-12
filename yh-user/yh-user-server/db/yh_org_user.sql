@@ -18,10 +18,10 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for org_user
+-- Table structure for yh_org_user
 -- ----------------------------
-DROP TABLE IF EXISTS `org_user`;
-CREATE TABLE `org_user`  (
+DROP TABLE IF EXISTS `yh_org_user`;
+CREATE TABLE `yh_org_user`  (
   `id_` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '主键',
   `username_` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账户',
   `nickname_` varchar(128) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '名称',
@@ -45,9 +45,9 @@ CREATE TABLE `org_user`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of org_user
+-- Records of yh_org_user
 -- ----------------------------
-INSERT INTO `org_user` VALUES ('1438789370565718017', 'string', 'string', 'fASDfrNWVl4ouxTlod7bJApawlYfjtMYxUonn7apZl4=', 'string', 'string', 'string', 'string', 'string', 'string', '01', '2021-09-17 16:56:05', 'string', 'string', '2021-09-23 13:59:11', 0);
-INSERT INTO `org_user` VALUES ('50831', 'admin', '系统管理员', '8x9Znf79o+OKoJHH/k0X3DHYfxF4exkUqYoxkAskPCE=', 'yhgogo816@gmail.com', NULL, 'test', NULL, '未知', 'system', '01', NULL, NULL, NULL, '2021-08-25 15:26:18', 0);
+INSERT INTO `yh_org_user` VALUES ('1438789370565718017', 'string', 'string', 'fASDfrNWVl4ouxTlod7bJApawlYfjtMYxUonn7apZl4=', 'string', 'string', 'string', 'string', 'string', 'string', '01', '2021-09-17 16:56:05', 'string', 'string', '2021-09-23 13:59:11', 0);
+INSERT INTO `yh_org_user` VALUES ('50831', 'admin', '系统管理员', '8x9Znf79o+OKoJHH/k0X3DHYfxF4exkUqYoxkAskPCE=', 'yhgogo816@gmail.com', NULL, 'test', NULL, '未知', 'system', '01', NULL, NULL, NULL, '2021-08-25 15:26:18', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;

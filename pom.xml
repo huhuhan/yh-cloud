@@ -25,6 +25,7 @@
         <module>yh-actuator</module>
         <module>yh-generator</module>
         <module>yh-user</module>
+        <module>yh-sys</module>
     </modules>
 
     <!--版本号-->
