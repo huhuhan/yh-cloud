@@ -44,7 +44,7 @@ public class DefaultExceptionAdvice {
      */
     @ExceptionHandler(value = BusinessException.class)
     public ReturnWrapper handleBusinessException(BusinessException e) {
-        return this.defHandler(e.getMessage(), e);
+        return ReturnWrapMapper.error(e);
     }
 
     /**
@@ -56,15 +56,6 @@ public class DefaultExceptionAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler(Exception.class)
     public ReturnWrapper handleException(Exception e) {
-        return this.defHandler(e);
-    }
-
-    private ReturnWrapper defHandler(String msg, Exception e) {
-        log.error(msg, e);
-        return ReturnWrapMapper.errorWithException(e);
-    }
-
-    private ReturnWrapper defHandler(Exception e) {
         log.error(e.getMessage(), e);
         return ReturnWrapMapper.errorWithException(e);
     }

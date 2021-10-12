@@ -9,6 +9,8 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * 用户表
  *
@@ -18,16 +20,19 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@TableName("org_user")
+@TableName("yh_org_user")
 @ApiModel(value = "OrgUser", description = "用户表")
 public class OrgUser extends SuperEntity {
     private static final long serialVersionUID = 1L;
+    @NotBlank(message = "登录名（账户）不能为空")
     @ApiModelProperty(value = "登录名（账户）")
     @TableField(value = "username_")
     private String username;
+    @NotBlank(message = "名称（昵称）不能为空")
     @ApiModelProperty(value = "名称（昵称）")
     @TableField(value = "nickname_")
     private String nickname;
+    @NotBlank(message = "密码不能为空")
     @ApiModelProperty(value = "密码")
     @TableField(value = "password_")
     private String password;
@@ -58,7 +63,7 @@ public class OrgUser extends SuperEntity {
     @ApiModelProperty(value = "更新人")
     @TableField(value = "update_by_")
     private String updateBy;
-    @ApiModelProperty(value = "是否删除，数据字典，是否")
+    @ApiModelProperty(value = "是否删除，0否1是")
     @TableField(value = "delete_flag_")
-    private String deleteFlag;
+    private Integer deleteFlag;
 }

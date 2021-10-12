@@ -1,22 +1,22 @@
 package com.yh.cloud.user.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.yh.cloud.base.constant.BaseConstant;
 import com.yh.cloud.user.model.entity.OrgUser;
 import com.yh.cloud.user.model.vo.OrgUserQuery;
+import com.yh.cloud.user.model.vo.UpdateOrgUserVO;
 import com.yh.cloud.user.service.IOrgUserService;
 import com.yh.common.web.annotation.CUser;
-import com.yh.common.web.exception.BusinessException;
 import com.yh.common.web.model.entity.CurrentUser;
-import com.yh.common.web.wrapper.ReturnCode;
+import com.yh.common.web.util.AdminUtil;
 import com.yh.common.web.wrapper.ReturnWrapMapper;
 import com.yh.common.web.wrapper.ReturnWrapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
+
+import javax.validation.Valid;
 
 /**
  * 用户表
@@ -43,16 +43,23 @@ public class OrgUserController {
         return ReturnWrapMapper.ok(orgUserService.getById(id));
     }
 
-    @ApiOperation(value = "保存or更新")
+    @ApiOperation(value = "保存")
     @PostMapping("/save")
-    public ReturnWrapper save(@RequestBody OrgUser orgUser) {
+    public ReturnWrapper save(@Valid @RequestBody OrgUser orgUser) {
         return ReturnWrapMapper.ok(orgUserService.saveUser(orgUser));
+    }
+
+    @ApiOperation(value = "更新-基本信息")
+    @PostMapping("/update")
+    public ReturnWrapper<OrgUser> updateById(@Valid @RequestBody UpdateOrgUserVO userVO) {
+        return ReturnWrapMapper.ok(orgUserService.updateById(userVO));
     }
 
     @ApiOperation(value = "删除")
     @DeleteMapping("/{id}")
     public ReturnWrapper delete(@PathVariable Long id) {
-        return ReturnWrapMapper.ok("不支持删除！");
+        AdminUtil.unAuthorized();
+        return ReturnWrapMapper.ok(orgUserService.deleteById(id));
     }
 
     @ApiOperation(value = "个人修改密码")
@@ -68,9 +75,7 @@ public class OrgUserController {
     public ReturnWrapper modifyPwdByAdmin(@ApiIgnore @CUser CurrentUser currentUser,
                                           @RequestParam String password,
                                           @RequestParam String userId) {
-        if (currentUser == null || !BaseConstant.ADMIN_USER_ID.equals(currentUser.getUserId())) {
-            throw new BusinessException(ReturnCode.UNAUTHORIZED_OPERATION);
-        }
+        AdminUtil.checkToDo(currentUser);
         return ReturnWrapMapper.ok(orgUserService.changePwd(userId, null, password));
     }
 

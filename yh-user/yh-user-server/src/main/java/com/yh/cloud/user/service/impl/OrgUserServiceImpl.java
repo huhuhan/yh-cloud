@@ -1,7 +1,8 @@
 package com.yh.cloud.user.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.BooleanUtil;
 import cn.hutool.core.util.StrUtil;
-import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -9,10 +10,10 @@ import com.yh.cloud.base.constant.BaseConstant;
 import com.yh.cloud.user.mapper.OrgUserMapper;
 import com.yh.cloud.user.model.entity.OrgUser;
 import com.yh.cloud.user.model.vo.OrgUserQuery;
+import com.yh.cloud.user.model.vo.UpdateOrgUserVO;
 import com.yh.cloud.user.service.IOrgUserService;
 import com.yh.common.db.service.impl.SuperServiceImpl;
 import com.yh.common.web.exception.BusinessException;
-import com.yh.common.web.exception.ParameterException;
 import com.yh.common.web.model.entity.CurrentUser;
 import com.yh.common.web.wrapper.ReturnCode;
 import org.springframework.beans.BeanUtils;
@@ -68,7 +69,7 @@ public class OrgUserServiceImpl extends SuperServiceImpl<OrgUserMapper, OrgUser>
 
     @Override
     public OrgUser saveUser(OrgUser orgUser) {
-        this.isUserExist(orgUser);
+        this.userIsUnique(true, orgUser.getUsername(), orgUser.getMobile(), orgUser.getEmail());
 
         orgUser.setPassword(passwordEncoder.encode(BaseConstant.DEFAULT_PWD));
         // todo: 数据字典工具类
@@ -79,18 +80,61 @@ public class OrgUserServiceImpl extends SuperServiceImpl<OrgUserMapper, OrgUser>
     }
 
     @Override
-    public boolean isUserExist(OrgUser orgUser) {
-        if (null == orgUser) {
-            throw new ParameterException("orgUser");
+    public OrgUser updateById(UpdateOrgUserVO userVO) {
+        OrgUser orgUser = this.getById(userVO.getId());
+        if (orgUser != null) {
+            if (StrUtil.isNotBlank(userVO.getMobile())) {
+                this.mobileIsUnique(true, userVO.getMobile());
+            }
+            if (StrUtil.isNotBlank(userVO.getEmail())) {
+                this.emailIsUnique(true, userVO.getEmail());
+            }
+            BeanUtil.copyProperties(userVO, orgUser);
+            this.updateById(orgUser);
+            return this.getById(orgUser.getId());
         }
-        // 验证唯一字段
-        int usernameCount = this.count(Wrappers.<OrgUser>lambdaQuery().eq(OrgUser::getUsername, orgUser.getUsername()));
-        int mobileCount = this.count(Wrappers.<OrgUser>lambdaQuery().eq(OrgUser::getMobile, orgUser.getMobile()));
-        int emailCount = this.count(Wrappers.<OrgUser>lambdaQuery().eq(OrgUser::getEmail, orgUser.getEmail()));
-        if (usernameCount > 0 || mobileCount > 0 || emailCount > 0) {
-            throw new BusinessException(ReturnCode.USER_01);
+        return null;
+    }
+
+    @Override
+    public boolean deleteById(Long id) {
+        OrgUser orgUser = this.getById(id);
+        if (null != orgUser) {
+            orgUser.setDeleteFlag(BooleanUtil.toInt(Boolean.TRUE));
+            return this.updateById(orgUser);
         }
         return false;
+    }
+
+    @Override
+    public boolean userIsUnique(boolean throwTrueError, String username, String mobile, String email) {
+        int usernameCount = this.count(Wrappers.<OrgUser>lambdaQuery().eq(OrgUser::getUsername, username));
+        boolean mobileIsUnique = this.mobileIsUnique(false, mobile);
+        boolean emailIsUnique = this.emailIsUnique(false, email);
+        if (usernameCount > 0 || mobileIsUnique || emailIsUnique) {
+            if (throwTrueError) {
+                throw new BusinessException(ReturnCode.USER_01);
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean mobileIsUnique(boolean throwTrueError, String mobile) {
+        boolean flag = this.count(Wrappers.<OrgUser>lambdaQuery().eq(OrgUser::getMobile, mobile)) > 0;
+        if (flag && throwTrueError) {
+            throw new BusinessException(ReturnCode.USER_04);
+        }
+        return flag;
+    }
+
+    private boolean emailIsUnique(boolean throwTrueError, String email) {
+        boolean flag = this.count(Wrappers.<OrgUser>lambdaQuery().eq(OrgUser::getEmail, email)) > 0;
+        if (flag && throwTrueError) {
+            throw new BusinessException(ReturnCode.USER_05);
+        }
+        return flag;
     }
 
     @Override

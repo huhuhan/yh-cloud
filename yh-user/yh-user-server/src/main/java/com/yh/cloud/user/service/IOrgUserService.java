@@ -3,6 +3,7 @@ package com.yh.cloud.user.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yh.cloud.user.model.entity.OrgUser;
 import com.yh.cloud.user.model.vo.OrgUserQuery;
+import com.yh.cloud.user.model.vo.UpdateOrgUserVO;
 import com.yh.common.db.service.ISuperService;
 import com.yh.common.web.model.entity.CurrentUser;
 
@@ -24,12 +25,17 @@ public interface IOrgUserService extends ISuperService<OrgUser> {
     IPage<OrgUser> findList(OrgUserQuery<OrgUser> orgUserQuery);
 
     /**
-     * 用户是否存在
+     * 用户是否唯一
      *
+     * @param throwTrueError true则抛出异常
+     * @param username       登录名（账户）
+     * @param mobile         手机号
+     * @param email          邮箱
+     * @return boolean
      * @author yanghan
-     * @date 2021/9/16
+     * @date 2021/10/12
      */
-    boolean isUserExist(OrgUser orgUser);
+    boolean userIsUnique(boolean throwTrueError, String username, String mobile, String email);
 
     /**
      * 修改密码
@@ -72,5 +78,25 @@ public interface IOrgUserService extends ISuperService<OrgUser> {
      * @date 2021/9/17
      */
     OrgUser saveUser(OrgUser orgUser);
+
+    /**
+     * 删除用户，逻辑删除
+     *
+     * @param id
+     * @return boolean
+     * @author yanghan
+     * @date 2021/9/17
+     */
+    boolean deleteById(Long id);
+
+    /**
+     * 更新基本信息
+     *
+     * @param userVO
+     * @return com.yh.cloud.user.model.entity.OrgUser
+     * @author yanghan
+     * @date 2021/9/17
+     */
+    OrgUser updateById(UpdateOrgUserVO userVO);
 }
 

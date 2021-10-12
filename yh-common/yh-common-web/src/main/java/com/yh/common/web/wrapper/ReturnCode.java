@@ -21,11 +21,14 @@ public enum ReturnCode implements IReturnCode {
     /** 业务通用状态码 */
     PARAMETER_ERROR("Parameter Missing", "缺失参数", "E001"),
     UNAUTHORIZED_OPERATION("Unauthorized operation", "无权操作", "E002"),
+    NULL_ERROR("Error Parameter", "异常参数", "E003"),
 
     /** 用户组织状态码 */
     USER_01("User already exists", "用户已存在！", "E1001"),
     USER_02("User does not exist", "用户不存在！", "E1002"),
     USER_03("The original password is incorrect", "原密码不正确！", "E1003"),
+    USER_04("Mobile bound", "手机号已绑定！", "E1004"),
+    USER_05("Email bound", "邮箱已绑定！", "E1005"),
     ;
 
 
