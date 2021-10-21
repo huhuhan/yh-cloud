@@ -23,7 +23,7 @@ import java.util.Date;
 public class SuperEntity<T extends Model<?>> extends Model<T> {
 
     @TableId(value = "id_", type = IdType.ASSIGN_ID)
-    private Long id;
+    private String id;
 
     @TableField(value = "create_time_", fill = FieldFill.INSERT)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+08")
