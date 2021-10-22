@@ -64,7 +64,7 @@
         <alibaba.fastjson.version>1.2.60</alibaba.fastjson.version>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <spring-boot-admin.version>2.2.4</spring-boot-admin.version>
-
+        <com.aliyun.oss.version>3.10.2</com.aliyun.oss.version>
     </properties>
 
 
@@ -131,6 +131,11 @@
             <dependency>
                 <groupId>com.yh.cloud</groupId>
                 <artifactId>yh-common-web</artifactId>
+                <version>${yh-common.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-file</artifactId>
                 <version>${yh-common.version}</version>
             </dependency>
             <!--自定义API声明-->
@@ -284,7 +289,12 @@
                 <artifactId>spring-boot-admin-starter-server</artifactId>
                 <version>${spring-boot-admin.version}</version>
             </dependency>
-
+            <!--aliyun-sdk-oss-->
+            <dependency>
+                <groupId>com.aliyun.oss</groupId>
+                <artifactId>aliyun-sdk-oss</artifactId>
+                <version>${com.aliyun.oss.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

@@ -83,7 +83,7 @@
            <finalName>${project.artifactId}</finalName>
        </build>
    </project>
-
+   
    ```
 
 
@@ -283,4 +283,39 @@ eureka:
     }
     ```
 
+
+
+### 文件上传
+
+参考服务：**yh-file**，可同时支持多种方式的文件系统读写。
+
+1. 引入依赖包
+
+    ```xml
+            <dependency>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-file</artifactId>
+            </dependency>
+    ```
+
+   
+
+2. 引入配置
+
+   ```yml
+   # 根据需求配置文件系统方式，包括database、oridinary、aliyun
+   yh:
+     uploader:
+       enabled: true
+       default-type: database
+       ordinary:
+         path: /user/yh_upload
+       aliyun:
+         endpoint: xx
+         access-key: xx
+         secret-key: xx
+         bucket-name: xx
+   ```
+
+   
 
