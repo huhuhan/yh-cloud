@@ -55,6 +55,7 @@ public class AliOssUploader extends AbstractUploader {
         String bucket = path.substring(0, firstIndex);
         String fileName = path.substring(firstIndex + 1);
         OSSObject object = ossClient.getObject(bucket, fileName);
+        this.shutdown();
         return IoUtil.readBytes(object.getObjectContent(), true);
     }
 
@@ -88,6 +89,9 @@ public class AliOssUploader extends AbstractUploader {
         return oss;
     }
 
+    /**
+     * 阿里云客户端每次使用需要关闭
+     */
     private void shutdown() {
         oss.shutdown();
         oss = null;
