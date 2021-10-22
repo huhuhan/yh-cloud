@@ -1,0 +1,65 @@
+package com.yh.cloud.file.service.impl;
+
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.io.FileUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.yh.cloud.file.mapper.SysFileMapper;
+import com.yh.cloud.file.model.entity.SysFile;
+import com.yh.cloud.file.model.vo.SysFileQuery;
+import com.yh.cloud.file.service.ISysFileService;
+import com.yh.common.db.service.impl.SuperServiceImpl;
+import com.yh.common.file.model.ObjectInfoPo;
+import com.yh.common.file.uploader.IUploader;
+import com.yh.common.file.uploader.UploaderFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+/**
+ * 系统附件表
+ *
+ * @author yanghan
+ * @date 2021-10-20 11:15:16
+ */
+@Service
+public class SysFileServiceImpl extends SuperServiceImpl<SysFileMapper, SysFile> implements ISysFileService {
+
+    @Override
+    public IPage<SysFile> findList(SysFileQuery<SysFile> sysFileQuery) {
+        IPage<SysFile> pageQuery = sysFileQuery.initPageQuery();
+        QueryWrapper<SysFile> queryWrapper = Wrappers.query();
+        sysFileQuery.initFilter(queryWrapper);
+        return this.page(pageQuery, queryWrapper);
+    }
+
+    @Override
+    public SysFile uploadFile(MultipartFile file, String uploaderType) {
+        SysFile sysFile = new SysFile();
+        sysFile.setName(file.getOriginalFilename());
+        sysFile.setExt(FileUtil.extName(file.getOriginalFilename()));
+        // 选择上传器存储至文件系统
+        IUploader iUploader = UploaderFactory.getUploader(uploaderType);
+        sysFile.setUploader(iUploader.type());
+        ObjectInfoPo objectInfoPo = iUploader.upload(file);
+        BeanUtil.copyProperties(objectInfoPo, sysFile);
+        // 保存记录
+        this.save(sysFile);
+        return this.getById(sysFile.getId());
+    }
+
+    @Override
+    public byte[] download(String fileId) {
+        SysFile sysFile = this.getById(fileId);
+        IUploader uploader = UploaderFactory.getUploader(sysFile.getUploader());
+        return uploader.take(sysFile.getPath());
+    }
+
+    @Override
+    public boolean removeFile(Long fileId) {
+        SysFile sysFile = this.getById(fileId);
+        IUploader uploader = UploaderFactory.getUploader(sysFile.getUploader());
+        uploader.remove(sysFile.getPath());
+        return this.removeById(sysFile.getId());
+    }
+}

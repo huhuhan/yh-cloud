@@ -26,6 +26,7 @@
         <module>yh-generator</module>
         <module>yh-user</module>
         <module>yh-sys</module>
+        <module>yh-file</module>
     </modules>
 
     <!--版本号-->

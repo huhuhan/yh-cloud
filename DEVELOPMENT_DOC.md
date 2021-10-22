@@ -164,6 +164,7 @@ eureka:
     instance-id: ${spring.application.name}:${spring.cloud.client.ip-address}:${server.port}
 ```
 
+> 依赖配置单独引用，便于后期更换其它注册中心
 
 ### 认证鉴权
 
