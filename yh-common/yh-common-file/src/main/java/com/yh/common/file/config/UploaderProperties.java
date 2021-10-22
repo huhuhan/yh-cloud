@@ -15,6 +15,7 @@ public class UploaderProperties {
     public static final String PREFIX = "yh.uploader";
     public static final String PREFIX_ORDINARY = "ordinary";
     public static final String PREFIX_ALIYUN = "aliyun";
+    public static final String PREFIX_MINIO = "minio";
     private boolean enabled;
     /** 默认方式 */
     private String defaultType;
@@ -22,6 +23,8 @@ public class UploaderProperties {
     private DfsPo ordinary;
     /** 阿里云 */
     private OssPo aliyun;
+    /** MinIO */
+    private OssPo minio;
 
     @ConfigurationProperties(prefix = UploaderProperties.PREFIX + "." + UploaderProperties.PREFIX_ORDINARY)
     public DfsPo ordinary() {
@@ -30,6 +33,11 @@ public class UploaderProperties {
 
     @ConfigurationProperties(prefix = UploaderProperties.PREFIX + "." + UploaderProperties.PREFIX_ALIYUN)
     public OssPo aliyun() {
+        return new OssPo();
+    }
+
+    @ConfigurationProperties(prefix = UploaderProperties.PREFIX + "." + UploaderProperties.PREFIX_MINIO)
+    public OssPo minio() {
         return new OssPo();
     }
 }

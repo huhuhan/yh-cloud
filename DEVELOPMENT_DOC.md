@@ -286,9 +286,10 @@ eureka:
 
 
 
-### 文件上传
+### 文件系统
 
 参考服务：**yh-file**，可同时支持多种方式的文件系统读写。
+
 
 1. 引入依赖包
 
@@ -299,12 +300,12 @@ eureka:
             </dependency>
     ```
 
-   
 
 2. 引入配置
 
    ```yml
-   # 根据需求配置文件系统方式，包括database、oridinary、aliyun
+   # 根据需求配置文件系统方式，包括database、oridinary、aliyun、minio
+   # 开放读写的bucket，可不用配置密钥
    yh:
      uploader:
        enabled: true
@@ -316,6 +317,11 @@ eureka:
          access-key: xx
          secret-key: xx
          bucket-name: xx
+        minio:
+          endpoint: xx
+          access-key:
+          secret-key:
+          bucket-name: xx
    ```
 
    

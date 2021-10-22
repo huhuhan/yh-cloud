@@ -42,9 +42,9 @@
             <artifactId>yh-common-file</artifactId>
         </dependency>
         <!--微服务 客户端-->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
+        </dependency>-->
     </dependencies>
 </project>

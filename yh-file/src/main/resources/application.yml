@@ -38,6 +38,11 @@ yh:
     ordinary:
       path: /user/yh_upload
       domain:
+    minio:
+      endpoint: http://120.24.61.35:8301
+      access-key:
+      secret-key:
+      bucket-name: testdemo
 #    aliyun:
 #      endpoint: xx
 #      access-key: xx
