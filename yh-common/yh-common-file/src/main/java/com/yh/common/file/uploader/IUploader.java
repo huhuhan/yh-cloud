@@ -44,8 +44,9 @@ public interface IUploader {
      * 删除文件
      *
      * @param path 文件路径，即保存时得到的路径
+     * @param hash 文件唯一哈希值
      * @author yanghan
      * @date 2021/10/20
      */
-    void remove(String path);
+    boolean remove(String path, String hash);
 }

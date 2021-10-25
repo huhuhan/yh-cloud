@@ -63,12 +63,13 @@ public class MinIoOssUploader extends AbstractUploader {
 
     @Override
     @SneakyThrows
-    public void remove(String path) {
+    public boolean remove(String path, String hash) {
         MinioClient client = this.getClient();
         int firstIndex = path.indexOf("/");
         String bucket = path.substring(0, firstIndex);
         String fileName = path.substring(firstIndex + 1);
         client.removeObject(bucket, fileName);
+        return true;
     }
 
     @SneakyThrows

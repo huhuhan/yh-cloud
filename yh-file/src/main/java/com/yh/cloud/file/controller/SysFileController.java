@@ -47,8 +47,9 @@ public class SysFileController {
 
     @ApiOperation(value = "删除")
     @DeleteMapping("/{id}")
-    public ReturnWrapper delete(@PathVariable Long id) {
-        return ReturnWrapMapper.ok(sysFileService.removeFile(id));
+    public ReturnWrapper delete(@PathVariable Long id,
+                                @RequestParam(required = false) String uploaderType) {
+        return ReturnWrapMapper.ok(sysFileService.removeFile(id, uploaderType));
     }
 
     @ApiOperation(value = "上传文件")
@@ -60,7 +61,8 @@ public class SysFileController {
 
     @ApiOperation(value = "下载文件")
     @GetMapping("/download/{fileId}")
-    public ResponseEntity uploadFile(@PathVariable String fileId) throws Exception {
+    public ResponseEntity uploadFile(@PathVariable String fileId,
+                                     @RequestParam(required = false) String uploaderType) throws Exception {
         SysFile sysFile = sysFileService.getById(fileId);
 
         HttpHeaders headers = new HttpHeaders();
@@ -68,6 +70,6 @@ public class SysFileController {
         String downloadFileName = URLEncoder.encode(sysFile.getName(), StandardCharsets.UTF_8.toString());
         headers.setContentDispositionFormData("attachment", downloadFileName);
         headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
-        return new ResponseEntity<>(sysFileService.download(fileId), headers, HttpStatus.OK);
+        return new ResponseEntity<>(sysFileService.download(fileId, uploaderType), headers, HttpStatus.OK);
     }
 }

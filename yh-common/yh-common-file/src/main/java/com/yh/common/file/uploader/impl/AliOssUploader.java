@@ -60,7 +60,7 @@ public class AliOssUploader extends AbstractUploader {
     }
 
     @Override
-    public void remove(String path) {
+    public boolean remove(String path, String hash) {
         // 删除文件或目录。如果要删除目录，目录必须为空。
         OSS ossClient = this.getClient();
         int firstIndex = path.indexOf("/");
@@ -68,6 +68,7 @@ public class AliOssUploader extends AbstractUploader {
         String fileName = path.substring(firstIndex + 1);
         ossClient.deleteObject(bucket, fileName);
         this.shutdown();
+        return true;
     }
 
 

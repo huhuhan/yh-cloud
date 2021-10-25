@@ -38,20 +38,22 @@ public interface ISysFileService extends ISuperService<SysFile> {
      * 下载文件，返回字节数据
      *
      * @param fileId 文件主键
+     * @param uploaderType 上传器
      * @return byte[]
      * @author yanghan
      * @date 2021/10/20
      */
-    byte[] download(String fileId);
+    byte[] download(String fileId, String uploaderType);
 
     /**
      * 删除文件
      *
      * @param fileId 文件主键
+     * @param uploaderType  上传器
      * @return boolean
      * @author yanghan
      * @date 2021/10/20
      */
-    boolean removeFile(Long fileId);
+    boolean removeFile(Long fileId, String uploaderType);
 }
 

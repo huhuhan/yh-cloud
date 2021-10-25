@@ -51,8 +51,8 @@ public class DatabaseUploader extends AbstractUploader {
     }
 
     @Override
-    public void remove(String path) {
-        jdbcTemplate.update("delete from " + BaseConstant.GLOBAL_PREFIX + "sys_db_uploader where id_ = ?", path);
+    public boolean remove(String path, String hash) {
+        return jdbcTemplate.update("delete from " + BaseConstant.GLOBAL_PREFIX + "sys_db_uploader where id_ = ?", path) > 0;
     }
 
 }

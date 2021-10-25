@@ -13,6 +13,8 @@ import com.yh.common.db.service.impl.SuperServiceImpl;
 import com.yh.common.file.model.ObjectInfoPo;
 import com.yh.common.file.uploader.IUploader;
 import com.yh.common.file.uploader.UploaderFactory;
+import com.yh.common.web.exception.BusinessException;
+import com.yh.common.web.wrapper.ReturnCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -49,17 +51,20 @@ public class SysFileServiceImpl extends SuperServiceImpl<SysFileMapper, SysFile>
     }
 
     @Override
-    public byte[] download(String fileId) {
+    public byte[] download(String fileId, String uploaderType) {
         SysFile sysFile = this.getById(fileId);
-        IUploader uploader = UploaderFactory.getUploader(sysFile.getUploader());
+        IUploader uploader = UploaderFactory.getUploader(uploaderType);
         return uploader.take(sysFile.getPath());
     }
 
     @Override
-    public boolean removeFile(Long fileId) {
+    public boolean removeFile(Long fileId, String uploaderType) {
         SysFile sysFile = this.getById(fileId);
-        IUploader uploader = UploaderFactory.getUploader(sysFile.getUploader());
-        uploader.remove(sysFile.getPath());
+        IUploader uploader = UploaderFactory.getUploader(uploaderType);
+        boolean flag = uploader.remove(sysFile.getPath(), sysFile.getHash());
+        if (!flag) {
+            throw new BusinessException("删除失败，请检查文件系统", ReturnCode.ERROR.getCode());
+        }
         return this.removeById(sysFile.getId());
     }
 }

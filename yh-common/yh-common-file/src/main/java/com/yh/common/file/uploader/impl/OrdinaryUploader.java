@@ -45,8 +45,8 @@ public class OrdinaryUploader extends AbstractUploader {
     }
 
     @Override
-    public void remove(String path) {
-        FileUtil.del(path);
+    public boolean remove(String path, String hash) {
+        return FileUtil.del(path);
     }
 
     @SneakyThrows
