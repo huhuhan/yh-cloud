@@ -76,11 +76,11 @@ public class MinIoOssUploader extends AbstractUploader {
         if (null == minioClient) {
             try {
                 OssPo ossPo = UploaderFactory.uploaderProperties.getMinio();
-                if (StrUtil.isBlank(ossPo.getAccesskey()) && StrUtil.isBlank(ossPo.getSecretKey())) {
+                if (StrUtil.isBlank(ossPo.getAccessKey()) && StrUtil.isBlank(ossPo.getSecretKey())) {
                     // 开放读写的bucket可不用配置密钥
                     minioClient = new MinioClient(ossPo.getEndpoint());
                 } else {
-                    minioClient = new MinioClient(ossPo.getEndpoint(), ossPo.getAccesskey(), ossPo.getSecretKey());
+                    minioClient = new MinioClient(ossPo.getEndpoint(), ossPo.getAccessKey(), ossPo.getSecretKey());
                 }
             } catch (Exception e) {
                 throw new Exception("[" + UploaderProperties.PREFIX_MINIO + "]上传器配置错误，请校验！");

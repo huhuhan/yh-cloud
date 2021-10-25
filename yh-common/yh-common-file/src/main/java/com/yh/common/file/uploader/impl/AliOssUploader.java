@@ -81,7 +81,7 @@ public class AliOssUploader extends AbstractUploader {
         if (null == oss) {
             try {
                 OssPo ossPo = UploaderFactory.uploaderProperties.getAliyun();
-                oss = new OSSClientBuilder().build(ossPo.getEndpoint(), ossPo.getAccesskey(), ossPo.getSecretKey());
+                oss = new OSSClientBuilder().build(ossPo.getEndpoint(), ossPo.getAccessKey(), ossPo.getSecretKey());
             } catch (Exception e) {
                 throw new Exception("[" + UploaderProperties.PREFIX_ALIYUN + "]上传器配置错误，请校验！");
             }

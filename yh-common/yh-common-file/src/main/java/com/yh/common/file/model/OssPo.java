@@ -13,7 +13,7 @@ public class OssPo {
     /** 域名 */
     private String endpoint;
     /** 访问KEY */
-    private String accesskey;
+    private String accessKey;
     /** 访问密钥 */
     private String secretKey;
     /** 桶 */
