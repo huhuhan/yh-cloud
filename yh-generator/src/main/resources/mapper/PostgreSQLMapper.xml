@@ -6,7 +6,7 @@
 		SELECT
 			tt.tablename tableName,
 -- 			tt.tableowner,
-			CAST ( obj_description ( cc.relfilenode, 'pg_class' ) AS VARCHAR ) AS tableComment
+			CAST ( obj_description ( cc.cc.oid ) AS VARCHAR ) AS tableComment
 		FROM
 			pg_class cc
 		INNER JOIN pg_tables tt ON tt.tablename = cc.relname
