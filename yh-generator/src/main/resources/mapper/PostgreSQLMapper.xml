@@ -28,7 +28,7 @@
 			pg_class AS pc
 				INNER JOIN pg_attribute AS pa ON pa.attrelid = pc.oid
 				INNER JOIN pg_type AS pt ON pa.atttypid = pt.oid
-				INNER JOIN pg_description AS pd ON pd.objoid = pa.attrelid
+				LEFT JOIN pg_description AS pd ON pd.objoid = pa.attrelid
 				AND pd.objsubid = pa.attnum
 		WHERE
 			pc.relname = #{tableName}
