@@ -17,6 +17,7 @@ import com.yh.common.web.wrapper.ReturnWrapMapper;
 import com.yh.common.web.wrapper.ReturnWrapper;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -56,7 +57,11 @@ public class SysFileController {
     @PostMapping("/upload")
     public ReturnWrapper upload(@RequestParam("file") MultipartFile file,
                                 @RequestParam(required = false) String uploaderType) {
-        return ReturnWrapMapper.ok(sysFileService.uploadFile(file, uploaderType));
+        try {
+            return ReturnWrapMapper.ok(sysFileService.uploadFile(file, uploaderType));
+        } catch (IOException e) {
+            return ReturnWrapMapper.error();
+        }
     }
 
     @ApiOperation(value = "下载文件")

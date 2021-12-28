@@ -7,9 +7,8 @@ import com.yh.common.file.model.ObjectInfoPo;
 import com.yh.common.file.uploader.AbstractUploader;
 import com.yh.common.file.uploader.UploaderFactory;
 import lombok.SneakyThrows;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 
 /**
  * 本地目录存储
@@ -26,12 +25,12 @@ public class OrdinaryUploader extends AbstractUploader {
 
     @Override
     @SneakyThrows
-    public ObjectInfoPo upload(MultipartFile file) {
-        InputStream is = file.getInputStream();
-        String path = super.getPath(this.getOrdinaryPath(), file.getOriginalFilename());
+    public ObjectInfoPo upload(byte[] file, String fileName) {
+        ByteArrayInputStream is = new ByteArrayInputStream(file);
+        String path = super.getPath(this.getOrdinaryPath(), fileName);
         FileUtil.writeFromStream(is, path);
         IoUtil.close(is);
-        // 构建对象
+
         ObjectInfoPo objectInfoPo = new ObjectInfoPo();
         objectInfoPo.setPath(path);
         objectInfoPo.setHash(super.getHash(file));

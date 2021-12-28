@@ -11,11 +11,9 @@ import io.minio.MinioClient;
 import io.minio.PutObjectOptions;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.sql.Struct;
 
 /**
  * OSS对象存储，MinIO服务
@@ -35,17 +33,16 @@ public class MinIoOssUploader extends AbstractUploader {
 
     @Override
     @SneakyThrows
-    public ObjectInfoPo upload(MultipartFile file) {
+    public ObjectInfoPo upload(byte[] file, String fileName) {
         MinioClient client = this.getClient();
-        String path = super.getPath("", file.getOriginalFilename());
-        InputStream is = file.getInputStream();
+        String path = super.getPath("", fileName);
+        ByteArrayInputStream is = new ByteArrayInputStream(file);
         client.putObject(this.getBucket(), path, is, new PutObjectOptions(is.available(), -1));
         IoUtil.close(is);
-        // 将bucket作为前缀加到路径中
-        path = this.getBucket() + "/" + path;
-        // 构建对象
+
         ObjectInfoPo objectInfoPo = new ObjectInfoPo();
-        objectInfoPo.setPath(path);
+        // 将bucket作为前缀加到路径中
+        objectInfoPo.setPath(this.getBucket() + path);
         objectInfoPo.setHash(super.getHash(file));
         return objectInfoPo;
     }

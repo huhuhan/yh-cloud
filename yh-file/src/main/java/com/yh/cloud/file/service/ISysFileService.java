@@ -6,6 +6,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.yh.common.db.service.ISuperService;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 /**
  * 系统附件表
  *
@@ -32,7 +34,7 @@ public interface ISysFileService extends ISuperService<SysFile> {
      * @author yanghan
      * @date 2021/10/20
      */
-    SysFile uploadFile(MultipartFile file, String uploaderType);
+    SysFile uploadFile(MultipartFile file, String uploaderType) throws IOException;
 
     /**
      * 下载文件，返回字节数据

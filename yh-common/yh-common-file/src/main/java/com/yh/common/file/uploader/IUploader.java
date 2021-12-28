@@ -1,7 +1,6 @@
 package com.yh.common.file.uploader;
 
 import com.yh.common.file.model.ObjectInfoPo;
-import org.springframework.web.multipart.MultipartFile;
 
 /**
  * 上传器，统一接口
@@ -23,12 +22,12 @@ public interface IUploader {
     /**
      * 上传文件
      *
-     * @param file {@link MultipartFile}
+     * @param file 二进制流
      * @return com.yh.cloud.file.model.vo.ObjectInfoVO
      * @author yanghan
      * @date 2021/10/20
      */
-    ObjectInfoPo upload(MultipartFile file);
+    ObjectInfoPo upload(byte[] file, String fileName);
 
     /**
      * 下载文件，字节流
@@ -49,4 +48,12 @@ public interface IUploader {
      * @date 2021/10/20
      */
     boolean remove(String path, String hash);
+
+    /**
+     * 获取文件哈希值
+     *
+     * @param file 字节数据
+     * @return String
+     */
+    String getHash(byte[] file);
 }

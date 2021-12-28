@@ -2,6 +2,7 @@ package com.yh.cloud.file.service.impl;
 
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.IoUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
@@ -17,6 +18,8 @@ import com.yh.common.web.exception.BusinessException;
 import com.yh.common.web.wrapper.ReturnCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 /**
  * 系统附件表
@@ -36,14 +39,17 @@ public class SysFileServiceImpl extends SuperServiceImpl<SysFileMapper, SysFile>
     }
 
     @Override
-    public SysFile uploadFile(MultipartFile file, String uploaderType) {
+    public SysFile uploadFile(MultipartFile file, String uploaderType) throws IOException {
+        byte[] data = IoUtil.readBytes(file.getInputStream());
+        String fileName = file.getOriginalFilename();
+
         SysFile sysFile = new SysFile();
-        sysFile.setName(file.getOriginalFilename());
-        sysFile.setExt(FileUtil.extName(file.getOriginalFilename()));
+        sysFile.setName(fileName);
+        sysFile.setExt(FileUtil.extName(fileName));
         // 选择上传器存储至文件系统
         IUploader iUploader = UploaderFactory.getUploader(uploaderType);
         sysFile.setUploader(iUploader.type());
-        ObjectInfoPo objectInfoPo = iUploader.upload(file);
+        ObjectInfoPo objectInfoPo = iUploader.upload(data, fileName);
         BeanUtil.copyProperties(objectInfoPo, sysFile);
         // 保存记录
         this.save(sysFile);

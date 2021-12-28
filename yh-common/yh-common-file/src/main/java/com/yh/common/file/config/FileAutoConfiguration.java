@@ -12,12 +12,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableConfigurationProperties({UploaderProperties.class})
-@ConditionalOnProperty(
-        prefix = UploaderProperties.PREFIX,
-        name = {"enabled"},
-        havingValue = "true",
-        matchIfMissing = false
-)
 public class FileAutoConfiguration {
 
     @Bean
@@ -26,16 +20,26 @@ public class FileAutoConfiguration {
     }
 
     @Bean
-    public AliOssUploader aliOssUploader() {
-        return new AliOssUploader();
-    }
-
-    @Bean
     public OrdinaryUploader ordinaryUploader() {
         return new OrdinaryUploader();
     }
 
     @Bean
+    @ConditionalOnProperty(
+            prefix = UploaderProperties.PREFIX + "." + UploaderProperties.PREFIX_ALIYUN,
+            name = {"enabled"},
+            havingValue = "true"
+    )
+    public AliOssUploader aliOssUploader() {
+        return new AliOssUploader();
+    }
+
+    @Bean
+    @ConditionalOnProperty(
+            prefix = UploaderProperties.PREFIX + "." + UploaderProperties.PREFIX_MINIO,
+            name = {"enabled"},
+            havingValue = "true"
+    )
     public MinIoOssUploader minIoOssUploader() {
         return new MinIoOssUploader();
     }

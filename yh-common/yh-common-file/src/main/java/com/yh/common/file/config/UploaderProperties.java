@@ -18,7 +18,7 @@ public class UploaderProperties {
     public static final String PREFIX_MINIO = "minio";
     private boolean enabled;
     /** 默认方式 */
-    private String defaultType;
+    private String defaultType = PREFIX_ORDINARY;
     /** 本地存储 */
     private DfsPo ordinary;
     /** 阿里云 */
@@ -41,3 +41,4 @@ public class UploaderProperties {
         return new OssPo();
     }
 }
+

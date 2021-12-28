@@ -10,9 +10,8 @@ import com.yh.common.file.model.OssPo;
 import com.yh.common.file.uploader.AbstractUploader;
 import com.yh.common.file.uploader.UploaderFactory;
 import lombok.SneakyThrows;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 
 /**
  * 阿里云OSS对象存储
@@ -32,18 +31,17 @@ public class AliOssUploader extends AbstractUploader {
 
     @Override
     @SneakyThrows
-    public ObjectInfoPo upload(MultipartFile file) {
+    public ObjectInfoPo upload(byte[] file, String fileName) {
         OSS ossClient = this.getClient();
-        InputStream is = file.getInputStream();
-        String path = super.getPath("", file.getOriginalFilename());
+        String path = super.getPath("", fileName);
+        ByteArrayInputStream is = new ByteArrayInputStream(file);
         ossClient.putObject(this.getBucket(), path, is);
-        this.shutdown();
         IoUtil.close(is);
-        // 将bucket作为前缀加到路径中
-        path = this.getBucket() + "/" + path;
-        // 构建对象
+        this.shutdown();
+
         ObjectInfoPo objectInfoPo = new ObjectInfoPo();
-        objectInfoPo.setPath(path);
+        // 将bucket作为前缀加到路径中
+        objectInfoPo.setPath(this.getBucket() + path);
         objectInfoPo.setHash(super.getHash(file));
         return objectInfoPo;
     }

@@ -1,12 +1,9 @@
 package com.yh.common.file.uploader;
 
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.io.IoUtil;
-import cn.hutool.crypto.SecureUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import lombok.SneakyThrows;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.InputStream;
 import java.util.Date;
 
 /**
@@ -34,11 +31,9 @@ public abstract class AbstractUploader implements IUploader {
      * @param file 文件
      * @return String
      */
+    @Override
     @SneakyThrows
-    protected String getHash(MultipartFile file) {
-        InputStream is = file.getInputStream();
-        String hash = SecureUtil.md5(file.getInputStream());
-        IoUtil.close(is);
-        return hash;
+    public String getHash(byte[] file) {
+        return DigestUtil.md5Hex(file);
     }
 }

@@ -10,6 +10,8 @@ import lombok.Data;
  */
 @Data
 public class OssPo {
+    /** 是否注入Spring容器 */
+    private Boolean enabled = false;
     /** 域名 */
     private String endpoint;
     /** 访问KEY */

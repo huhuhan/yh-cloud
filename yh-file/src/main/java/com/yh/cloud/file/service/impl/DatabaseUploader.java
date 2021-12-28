@@ -8,7 +8,6 @@ import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -34,9 +33,9 @@ public class DatabaseUploader extends AbstractUploader {
 
     @Override
     @SneakyThrows
-    public ObjectInfoPo upload(MultipartFile file) {
+    public ObjectInfoPo upload(byte[] file, String fileName) {
         String id = IdWorker.get32UUID();
-        jdbcTemplate.update("insert into " + BaseConstant.GLOBAL_PREFIX + "sys_db_uploader values (?,?)", id, file.getBytes());
+        jdbcTemplate.update("insert into " + BaseConstant.GLOBAL_PREFIX + "sys_db_uploader values (?,?)", id, file);
         // 构建对象
         ObjectInfoPo objectInfoPo = new ObjectInfoPo();
         objectInfoPo.setPath(id);

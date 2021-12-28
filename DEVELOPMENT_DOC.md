@@ -290,8 +290,7 @@ eureka:
 
 参考服务：**yh-file**，可同时支持多种方式的文件系统读写。
 
-
-1. 引入依赖包
+- 引入依赖包
 
     ```xml
             <dependency>
@@ -299,30 +298,31 @@ eureka:
                 <artifactId>yh-common-file</artifactId>
             </dependency>
     ```
+    
+- 文件系统操作接口封装，支持：ordinary（本地）、minio、aliyun
 
+- 配置如下
 
-2. 引入配置
-
-   ```yml
-   # 根据需求配置文件系统方式，包括database、oridinary、aliyun、minio
-   # 开放读写的bucket，可不用配置密钥
-   yh:
-     uploader:
-       enabled: true
-       default-type: database
-       ordinary:
-         path: /user/yh_upload
-       aliyun:
-         endpoint: xx
-         access-key: xx
-         secret-key: xx
-         bucket-name: xx
+    ```yaml
+    yh:
+      uploader:
+        enabled: true
+        default-type: ordinary
+        ordinary:
+          path: /user/yh_upload
+          domain: http://127.0.0.1:9031
         minio:
-          endpoint: xx
+          enabled: true
+          endpoint: http://xxx
           access-key:
           secret-key:
-          bucket-name: xx
-   ```
-
+          bucket-name: testdemo
+        aliyun:
+          enabled: false
+          endpoint: http://xxx
+          access-key:
+          secret-key:
+          bucket-name: testdemo
+    ```
    
 
