@@ -21,7 +21,6 @@ import java.io.InputStream;
  * @author yanghan
  * @date 2021/8/9
  */
-@Service
 public class MinIoOssUploader extends AbstractUploader {
 
     private MinioClient minioClient;

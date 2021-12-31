@@ -23,7 +23,7 @@ public interface IUploader {
      * 上传文件
      *
      * @param file 二进制流
-     * @return com.yh.cloud.file.model.vo.ObjectInfoVO
+     * @return {@link ObjectInfoPo}
      * @author yanghan
      * @date 2021/10/20
      */
@@ -54,6 +54,8 @@ public interface IUploader {
      *
      * @param file 字节数据
      * @return String
+     * @author yanghan
+     * @date 2021/10/20
      */
     String getHash(byte[] file);
 }
