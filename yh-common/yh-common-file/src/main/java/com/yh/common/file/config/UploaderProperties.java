@@ -16,7 +16,6 @@ public class UploaderProperties {
     public static final String PREFIX_ORDINARY = "ordinary";
     public static final String PREFIX_ALIYUN = "aliyun";
     public static final String PREFIX_MINIO = "minio";
-    private boolean enabled;
     /** 默认方式 */
     private String defaultType = PREFIX_ORDINARY;
     /** 本地存储 */
