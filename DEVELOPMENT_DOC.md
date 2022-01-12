@@ -1,8 +1,96 @@
 # 项目说明
 
+## 服务运行
+
+### 配置Hosts
+
+```python
+127.0.0.1 yh-eureka
+127.0.0.1 yh-gateway
+```
+
+
+
+### 服务启动
+
+依次启动
+
+1. yh-eureka
+2. yh-actuator 
+3. yh-gateway，端口`9000`
+4. yh-auth-server (用户依赖，默认采用demo-user-api）
+
+
+
+### 请求测试
+
+#### 测试账户
+
+```
+客户端：client_demo|secret_client_demo
+用户：yh|111111
+```
+
+> 使用yh-auth-server服务数据库的用户，需要
+>
+> - 启动yh-user-server 
+> - 替换yh-auth-server的demo-user-api为yh-user-api依赖
+
+#### 请求拦截
+
+```
+网关服务-请求拦截：http://localhost:9000/
+网关接口文档，请求通行：http://localhost:9000/swagger-ui.html
+```
+
+
+
+#### 登录认证
+
+```shell
+curl --location --request POST 'http://127.0.0.1:9001/oauth/token' \
+--header 'Authorization: Basic Y2xpZW50X2RlbW86c2VjcmV0X2NsaWVudF9kZW1v' \
+--header 'Content-Type: application/x-www-form-urlencoded' \
+--header 'Cookie: JSESSIONID=ABC0B320D206ED225C4C3FC12EB0FCC3' \
+--data-urlencode 'grant_type=password' \
+--data-urlencode 'scope=all' \
+--data-urlencode 'username=yh' \
+--data-urlencode 'password=111111'
+```
+
+> 客户端密钥，可以直接传参数，这里是用了Basic认证；
+
+
+
+#### 认证访问
+
+请求头加入令牌，注意前缀`Bearer `
+
+```
+Authorization: Bearer ffffffffffffffffffffffffffffffffff
+```
+
+http://localhost:9000/swagger-ui.html?urls.primaryName=YH-AUTH
+
+
+
 
 
 ## 服务介绍
+
+### 注册中心
+
+- 参考服务：**yh-eureka**
+- 引入security认证，用户密码yh/yh
+- 可注册为集群，参考`application-jq1.yaml，application-jq2.yaml`，
+
+
+
+### 监控服务
+
+- 参考服务：yh-actuator
+- 引入security认证，用户密码yh/yh
+
 
 
 ### 网关服务
@@ -21,6 +109,8 @@
 - 认证鉴权例子（非网关认证鉴权）：**yh-auth-client-demo**
 
 - 认证鉴权例子（网关认证鉴权）：**yh-user-server**
+
+- 配置扩展见[yh-common-auth](./yh-common/yh-common-auth/README.md)
 
   
 
@@ -89,28 +179,6 @@
 - 参考服务：**yh-sys**，作为系统通用接口的服务，比如数据字典之类
 
 
-
-
-## 服务运行
-
-### 配置Hosts
-
-```python
-127.0.0.1 yh-eureka
-127.0.0.1 yh-gateway
-```
-
-
-
-### 服务启动
-
-依次启动
-
-1. yh-eureka
-2. yh-gateway
-3. yh-actuator (可选）
-4. yh-auth-server (可选，默认采用demo-user-api）
-5. yh-user-server (可选，替代demo-user-api)
 
 
 
