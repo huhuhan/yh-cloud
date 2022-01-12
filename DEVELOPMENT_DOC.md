@@ -1,3 +1,95 @@
+# 项目说明
+
+
+
+## 服务介绍
+
+
+### 网关服务
+
+- 参考服务：**yh-gateway**
+- 已集成认证鉴权，结合认证服务【**yh-auth-server**】使用
+- 已集成统一swagger文档，从注册中心读取服务分组，或自定义分组，见application配置
+
+
+
+
+### 认证鉴权服务
+
+- 参考服务：**yh-auth-server**
+
+- 认证鉴权例子（非网关认证鉴权）：**yh-auth-client-demo**
+
+- 认证鉴权例子（网关认证鉴权）：**yh-user-server**
+
+  
+
+
+### 代码生成器
+
+- 启动【**yh-generator**】服务，访问Swagger地址
+
+- 支持数据库：MySQL、PostgreSQL
+
+- 修改application的数据库源配置
+
+- 默认配置文件参考`generator.properties`，接口请求参数支持覆盖
+
+- 生成的模板代码，依赖于
+
+  ```xml
+  <dependencies>
+      <dependency>
+          <groupId>com.yh.cloud</groupId>
+          <artifactId>yh-common-web</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.yh.cloud</groupId>
+          <artifactId>yh-common-db</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>com.yh.cloud</groupId>
+          <artifactId>yh-common-base</artifactId>
+      </dependency>
+      <!-- 数据库驱动依赖自行添加 -->
+  </dependencies>
+  ```
+
+- 应用，mybatis-plus的配置
+
+    ```java
+    @Configuration
+    @MapperScan(value = {"com.yh.cloud.xx.mapper"})
+    public class MyBatisPlusConfig {
+    }
+    ```
+
+
+
+### 用户服务
+
+- 参考服务：**yh-user-server**，基础服务，比如用户、角色、组织等基本信息
+- 服务模块：**yh-user-api**，提供公共接口给其他服务调用
+
+
+
+
+### 文件服务
+
+- 参考服务：**yh-file**，作为文件读写的代理转发服务，不直接与文件系统交互
+- 文件系统的封装操作说明，见[yh-common-file](./yh-common/yh-common-file/README.md)
+- 在**yh-common-file**的基础上，扩展实现一种文件存储方式，即数据库存储，`database`
+- 引入操作日志依赖包[yh-common-log](./yh-common/yh-common-log/README.md)，以删除操作为例子
+
+
+
+
+### 系统服务
+
+- 参考服务：**yh-sys**，作为系统通用接口的服务，比如数据字典之类
+
+
+
 
 ## 服务运行
 
@@ -7,6 +99,7 @@
 127.0.0.1 yh-eureka
 127.0.0.1 yh-gateway
 ```
+
 
 
 ### 服务启动
@@ -20,9 +113,8 @@
 5. yh-user-server (可选，替代demo-user-api)
 
 
-## 业务服务
 
-> 参考例子：yh-user
+## 服务扩展
 
 
 ### 新建服务
@@ -91,9 +183,9 @@
 
 1. 创建Maven项目（New Project），选择Maven
 
-2. yh-cloud项目（主要是yh-common），Maven需要先执行`Install`命令
+2. 引入**yh-cloud项目的yh-common**相关依赖包
 
-3. 引入Spring Boot 、Cloud版本，版本保持一致
+3. 保证Spring Boot 、Cloud等等版本保持一致
 
    ```xml
    <!--依赖声明管理-->
@@ -120,10 +212,9 @@
        </dependencies>
    </dependencyManagement>
    ```
-```
    
-基本依赖版本号
-   
+   基本依赖版本号
+       
    ```xml
    <!--版本号-->
    <properties>
@@ -139,7 +230,7 @@
        <spring-boot.version>2.2.10.RELEASE</spring-boot.version>
        <spring.cloud.version>Hoxton.SR5</spring.cloud.version>
    </properties>
-```
+   ```
 
    
 
@@ -166,163 +257,52 @@ eureka:
 
 > 依赖配置单独引用，便于后期更换其它注册中心
 
-### 认证鉴权
+
+### 公共依赖包
+
+- **yh-common**模块
+
+- 每个依赖包有对应README的使用说明
+
+- 单独维护的话，版本保证一致
 
 
 
-#### 请求参数
-
-
-由安全认证保护的服务接口，必须带token参数
-
-- 方式一，请求头带`Authorization`参数
-
-  ```go
-    headers: { 
-      'Authorization': 'Bearer 1b03594f-c51d-4a7a-9274-d018d27a7ff8'
-    }
-  ```
-
-- 方式二，请求中参数`access_token`
-
-  ```go
-  {
-   'access_token': '1b03594f-c51d-4a7a-9274-d018d27a7ff8' 
-  }
-  ```
-
+## 服务部署
 
 ### 网络隔离模式
 
-- 默认模式，【yh-gateway】已集成认证鉴权
+- 【网关服务】集成认证鉴权功能
 
-- 所有请求必须通过【yh-gateway】转发，服务部署时仅开放【yh-gateway】端口。
+- 【业务服务】不用集成认证鉴权功能
 
-- 获取授权，请求经【yh-gateway】转发至【yh--auth-server】
-- 请求，【yh-gateway】认证鉴权，再转发
+- 所有请求必须通过【网关服务】转发，外网仅开放【网关服务】端口。
 
+- 获取令牌授权时，请求经【网关服务】转发至【认证鉴权服务】获取令牌
+
+- 请求认证鉴权时，请求经【网关服务】直接认证鉴权，再转发【业务服务】
+
+- 外网，无法直接请求【业务服务】，因为端口没开放
+
+- 内网，可以直接请求【业务服务】，需要用【业务服务】自身端口
+
+  
 
 ### 无网络隔离模式
 
-- 忽略yh-gateway服务，直接请求业务服务
+- 【网关服务】无需集成认证鉴权功能
 
-- 若需要统一网关，则新建服务或移除auth依赖包注释相关代码
+- 【业务服务】集成认证鉴权功能
 
-- 业务服务需要认证鉴权的话，集成步骤如下：
+- 所有服务开放外网端口，可直接访问
 
-  1. 引入依赖
+- 获取令牌授权时，请求经【网关服务】转发至【认证鉴权服务】获取令牌
 
-     ```xml
-             <dependency>
-                 <groupId>com.yh.cloud</groupId>
-                 <artifactId>yh-common-auth</artifactId>
-             </dependency>
-     ```
+- 请求【业务服务】，不管是【网关服务】转发还是自身端口访问，【业务服务】都会到【认证鉴权服务】认证鉴权，方式根据集成而定，比如远程调用、Redis调用等等
 
-  2. 添加配置
+  
 
-     ```yaml
-     #作为需要oauth授权认证的资源客户端
-     security:
-       oauth2:
-         client:
-           client-id: client_demo
-           client-secret: secret_client_demo
-         resource:
-         # yh-auth服务地址
-           token-info-uri: http://localhost:9001/oauth/check_token
-     ```
+### 容器化
 
-  3. 注入配置类
-
-     ```java
-     @Configuration
-     @EnableResourceServer
-     public class MyResourceServerConfig extends DefaultResourceServerConfig {
-     }
-     ```
-
-     
-
-
-### 代码生成器
-
-- 支持数据库：MySQL、PostgreSQL
-
-- 修改application的数据库源配置
-
-- 启动【yh-generator】服务，访问Swagger地址
-
-- 默认配置文件参考`generator.properties`，接口请求参数支持覆盖
-
-- 生成的模板代码，依赖于
-
-  ```xml
-  <dependencies>
-      <dependency>
-          <groupId>com.yh.cloud</groupId>
-          <artifactId>yh-common-web</artifactId>
-      </dependency>
-      <dependency>
-          <groupId>com.yh.cloud</groupId>
-          <artifactId>yh-common-db</artifactId>
-      </dependency>
-      <dependency>
-          <groupId>com.yh.cloud</groupId>
-          <artifactId>yh-common-base</artifactId>
-      </dependency>
-      <!-- 数据库驱动依赖自行添加 -->
-  </dependencies>
-  ```
-
-- 应用，mybatis-plus的配置
-
-    ```java
-    @Configuration
-    @MapperScan(value = {"com.yh.cloud.xx.mapper"})
-    public class MyBatisPlusConfig {
-    }
-    ```
-
-
-
-### 文件系统
-
-参考服务：**yh-file**，可同时支持多种方式的文件系统读写。
-
-- 引入依赖包
-
-    ```xml
-            <dependency>
-                <groupId>com.yh.cloud</groupId>
-                <artifactId>yh-common-file</artifactId>
-            </dependency>
-    ```
-    
-- 文件系统操作接口封装，支持：ordinary（本地）、minio、aliyun
-
-- 配置如下
-
-    ```yaml
-    yh:
-      uploader:
-        enabled: true
-        default-type: ordinary
-        ordinary:
-          path: /user/yh_upload
-          domain: http://127.0.0.1:9031
-        minio:
-          enabled: true
-          endpoint: http://xxx
-          access-key:
-          secret-key:
-          bucket-name: testdemo
-        aliyun:
-          enabled: false
-          endpoint: http://xxx
-          access-key:
-          secret-key:
-          bucket-name: testdemo
-    ```
-   
+见[Dockerfile | docker-compose 典型案例参考 | 寒冷如铁 (github.io)](https://huhuhan.github.io/blog/views/docker/docker-demo.html#springcloud)
 
