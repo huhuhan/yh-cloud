@@ -66,6 +66,9 @@ public class SysFileServiceImpl extends SuperServiceImpl<SysFileMapper, SysFile>
     @Override
     public boolean removeFile(Long fileId, String uploaderType) {
         SysFile sysFile = this.getById(fileId);
+        if(null == sysFile){
+            throw new BusinessException(ReturnCode.NULL_ERROR);
+        }
         IUploader uploader = UploaderFactory.getUploader(uploaderType);
         boolean flag = uploader.remove(sysFile.getPath(), sysFile.getHash());
         if (!flag) {

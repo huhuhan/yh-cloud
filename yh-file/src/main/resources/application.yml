@@ -36,7 +36,7 @@ yh:
     enabled: true
     default-type: database
     ordinary:
-      path: /user/yh_upload
+      path: /usr/yh_upload
       domain: http://127.0.0.1:8038
     minio:
       enabled: true
@@ -50,4 +50,14 @@ yh:
       access-key:
       secret-key:
       bucket-name: testdemo
+  audit-log:
+    enabled: true
 
+
+# 日志
+logging:
+  level:
+    com.yh: debug
+  file:
+    # 在指定目录下生成spring.log文件
+    path: /usr/yh_log

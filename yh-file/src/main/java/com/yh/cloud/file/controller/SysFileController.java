@@ -1,20 +1,20 @@
 package com.yh.cloud.file.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import org.apache.commons.io.IOUtils;
+import com.yh.cloud.file.model.entity.SysFile;
+import com.yh.cloud.file.model.vo.SysFileQuery;
+import com.yh.cloud.file.service.ISysFileService;
+import com.yh.common.log.annotation.AuditLog;
+import com.yh.common.web.wrapper.ReturnWrapMapper;
+import com.yh.common.web.wrapper.ReturnWrapper;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import com.yh.cloud.file.model.entity.SysFile;
-import com.yh.cloud.file.model.vo.SysFileQuery;
-import com.yh.cloud.file.service.ISysFileService;
-import com.yh.common.web.wrapper.ReturnWrapMapper;
-import com.yh.common.web.wrapper.ReturnWrapper;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -48,6 +48,7 @@ public class SysFileController {
 
     @ApiOperation(value = "删除")
     @DeleteMapping("/{id}")
+    @AuditLog(operation = "'操作记录：删除文件，参数{id: ' + #id + ', uploaderType: ' + #uploaderType + '}'")
     public ReturnWrapper delete(@PathVariable Long id,
                                 @RequestParam(required = false) String uploaderType) {
         return ReturnWrapMapper.ok(sysFileService.removeFile(id, uploaderType));
