@@ -140,6 +140,11 @@
                 <artifactId>yh-common-file</artifactId>
                 <version>${yh-common.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.yh.cloud</groupId>
+                <artifactId>yh-common-log</artifactId>
+                <version>${yh-common.version}</version>
+            </dependency>
             <!--自定义API声明-->
             <dependency>
                 <groupId>com.yh.cloud</groupId>

@@ -18,6 +18,7 @@
         <module>yh-common-ribbon</module>
         <module>yh-common-auth</module>
         <module>yh-common-file</module>
+        <module>yh-common-log</module>
     </modules>
 
 
