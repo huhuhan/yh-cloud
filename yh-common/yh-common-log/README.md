@@ -1,8 +1,11 @@
 ## 使用说明
 
 - maven执行`install`命令
-
 - 引入本模块依赖包
+
+
+
+### 操作日志
 
 - 配置如下
 
@@ -24,9 +27,10 @@
           username: root
           password: yanghan
     ```
-    log模式，日志级别是`debug`，记得开启
     
-    db模式的数据库表参考如下，会自动创建
+- log模式，日志级别是`debug`，记得开启
+
+- db模式的数据库表参考如下，会自动创建
     ```sql
     CREATE TABLE IF NOT EXISTS `operation_logger` (
       `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -40,10 +44,9 @@
       PRIMARY KEY (`id`) USING BTREE
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
     ```
-      
-- 代码例子
+    
+- 代码例子：在controller接口上加上`com.yh.common.log.annotation.AuditLog`注解，参考如下
 
-    在controller接口上加上`com.yh.common.log.annotation.AuditLog`注解，例子如下
     ```java
         @PostMapping(value = "/demo")
         @AuditLog(operation = "'文字说明：' + #pageQueryVo.pageNum")
@@ -51,6 +54,32 @@
             return ReturnWrapMapper.ok();
         }
     ```
-    operation，字符串，通过spring的SpEL解析参数
-    
+    operation，字符串，通过spring的[SpEL]()解析参数
+
+
+
+### 请求日志
+
+- 配置如下
+	
+  ```yaml
+  yh:
+    request-log:
+      # 默认开启
+      enabled: true
+      # 忽略拦截地址，默认全部请求
+      ignore-urls:
+        - /file/*
+      # 字段信息长度，超出用... ...代替
+      field-log-length: 300
+      # 脱敏，日志中的以下字段值用-代替
+      sensitive-fields:
+        - password
+  ```
   
+- 若要将请求日志存数据库之类的处理，实现`com.yh.common.log.service.RequestLogService`的方法，基于**事件机制**
+
+- 请求日志中的当前用户信息，请实现`com.yh.common.log.service.CurrentUserLogService`，注入该类
+  
+  
+    
