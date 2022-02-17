@@ -1,6 +1,6 @@
 package com.yh.common.log.service;
 
-import com.yh.common.log.model.enrity.Audit;
+import com.yh.common.log.model.entity.Audit;
 
 /**
  * 审计日志接口

@@ -2,7 +2,7 @@ package com.yh.common.log.aspect;
 
 import com.yh.common.log.annotation.AuditLog;
 import com.yh.common.log.config.AuditLogProperties;
-import com.yh.common.log.model.enrity.Audit;
+import com.yh.common.log.model.entity.Audit;
 import com.yh.common.log.service.IAuditService;
 import lombok.extern.slf4j.Slf4j;
 import org.aspectj.lang.JoinPoint;

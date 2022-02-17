@@ -2,7 +2,7 @@ package com.yh.common.log.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.yh.common.log.config.AuditLogProperties;
-import com.yh.common.log.model.enrity.Audit;
+import com.yh.common.log.model.entity.Audit;
 import com.yh.common.log.model.properties.DbAuditPo;
 import com.yh.common.log.service.IAuditService;
 import com.zaxxer.hikari.HikariDataSource;

@@ -1,4 +1,4 @@
-package com.yh.common.log.model.enrity;
+package com.yh.common.log.model.entity;
 
 import lombok.Data;
 

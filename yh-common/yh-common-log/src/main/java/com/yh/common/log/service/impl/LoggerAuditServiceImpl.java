@@ -1,6 +1,6 @@
 package com.yh.common.log.service.impl;
 
-import com.yh.common.log.model.enrity.Audit;
+import com.yh.common.log.model.entity.Audit;
 import com.yh.common.log.service.IAuditService;
 import lombok.extern.slf4j.Slf4j;
 
