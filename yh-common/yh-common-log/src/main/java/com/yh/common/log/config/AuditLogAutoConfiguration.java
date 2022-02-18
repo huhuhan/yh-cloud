@@ -27,7 +27,7 @@ import javax.sql.DataSource;
         name = AuditLogProperties.PREFIX + "." + "enabled",
         havingValue = "true"
 )
-public class LogAutoConfiguration {
+public class AuditLogAutoConfiguration {
 
     @Bean
     @ConditionalOnClass({HttpServletRequest.class, RequestContextHolder.class})

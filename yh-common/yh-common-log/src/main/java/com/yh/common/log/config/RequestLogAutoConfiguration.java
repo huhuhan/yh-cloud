@@ -24,11 +24,11 @@ import org.springframework.context.annotation.Configuration;
         havingValue = "true",
         matchIfMissing = true
 )
-public class RequestAutoConfiguration {
+public class RequestLogAutoConfiguration {
 
     private final RequestLogProperties requestLogProperties;
 
-    public RequestAutoConfiguration(RequestLogProperties requestLogProperties) {
+    public RequestLogAutoConfiguration(RequestLogProperties requestLogProperties) {
         this.requestLogProperties = requestLogProperties;
     }
 

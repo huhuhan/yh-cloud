@@ -1,6 +1,7 @@
 # 自定义自动配置类,如果有多个类，使用逗号（，）分隔，\正斜杠标示换行还可以读取到指定的类
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.yh.common.log.config.LogAutoConfiguration,\
+com.yh.common.log.config.AuditLogAutoConfiguration,\
 com.yh.common.log.config.AppFactory,\
-com.yh.common.log.config.RequestAutoConfiguration
+com.yh.common.log.config.RequestLogAutoConfiguration,\
+com.yh.common.log.config.RequestTraceAutoConfiguration
 
